@@ -16,7 +16,7 @@ namespace PompeiiSquare.Server
         protected void Application_Start()
         {
             Database.SetInitializer<PompeiiSquareDbContext>(new MigrateDatabaseToLatestVersion<PompeiiSquareDbContext, Configuration>());
-
+            
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

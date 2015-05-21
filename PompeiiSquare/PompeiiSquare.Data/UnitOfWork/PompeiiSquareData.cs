@@ -32,7 +32,61 @@ namespace PompeiiSquare.Data.UnitOfWork
             get { return this.GetRepository<User>(); }
         }
 
-        // TODO: Add the remaining repositories
+        public IRepository<Gender> Genders
+        {
+            get { return this.GetRepository<Gender>(); }
+        }
+
+        public IRepository<Venue> Venues
+        {
+            get { return this.GetRepository<Venue>(); }
+        }
+
+        public IRepository<VenueGroup> VenueGroups
+        {
+            get { return this.GetRepository<VenueGroup>(); }
+
+        }
+
+        public IRepository<OpenHours> OpenHours
+        {
+            get { return this.GetRepository<OpenHours>(); }
+        }
+
+        public IRepository<Tag> Tags
+        {
+            get { return this.GetRepository<Tag>(); }
+        }
+
+        public IRepository<Photo> Photos
+        {
+            get { return this.GetRepository<Photo>(); }
+        }
+
+        public IRepository<Tip> Tips
+        {
+            get { return this.GetRepository<Tip>(); }
+        }
+
+        public IRepository<Checkin> Checkins
+        {
+            get { return this.GetRepository<Checkin>(); }
+        }
+
+        public IRepository<Notification> Notifications
+        {
+            get { return this.GetRepository<Notification>(); }
+        }
+
+        public IRepository<Event> Events
+        {
+            get { return this.GetRepository<Event>(); }
+        }
+
+        public IRepository<EventCategory> EventCategories
+        {
+            get { return this.GetRepository<EventCategory>(); }
+        }
 
         public IUserStore<User> UserStore
         {
