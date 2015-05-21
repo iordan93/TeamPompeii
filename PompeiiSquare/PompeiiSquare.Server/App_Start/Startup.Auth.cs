@@ -47,24 +47,23 @@ namespace PompeiiSquare.Server
             // This is similar to the RememberMe option when you log in.
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
-            // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+            app.UseMicrosoftAccountAuthentication(
+                clientId: AppKeys.MicrosoftClientId,
+                clientSecret: AppKeys.MicrosoftClientSecret);
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            app.UseTwitterAuthentication(
+               consumerKey: AppKeys.TwitterConsumerKey,
+               consumerSecret: AppKeys.TwitterConsumerSecret);
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: AppKeys.FacebookAppId,
+               appSecret: AppKeys.FacebookAppSecret);
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = AppKeys.GoogleClientId,
+                ClientSecret = AppKeys.GoogleClientSecret
+            });
         }
     }
 }
