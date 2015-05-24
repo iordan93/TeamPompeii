@@ -12,9 +12,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PompeiiSquare.Tests", "PompeiiSquare.Tests\PompeiiSquare.Tests.csproj", "{322404CD-6E0B-45F5-A672-887771B8CC0A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{583CB6DC-17D7-488B-B1EC-BBC77C104101}"
-	ProjectSection(SolutionItems) = preProject
-		C:\Users\pc\Desktop\DbDiagram.jpg = C:\Users\pc\Desktop\DbDiagram.jpg
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
