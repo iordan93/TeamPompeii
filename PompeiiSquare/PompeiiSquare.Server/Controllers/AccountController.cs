@@ -153,6 +153,11 @@ namespace PompeiiSquare.Server.Controllers
             if (ModelState.IsValid)
             {
                 //var user = new User { UserName = model.Email, Email = model.Email };
+                var photo = new Photo
+                {
+                    CreatedAt = DateTime.Now,
+                    Path = model.ProfilePicture.Path
+                };
                 var user = new User 
                 {
                     UserName = model.UserName,
@@ -160,8 +165,10 @@ namespace PompeiiSquare.Server.Controllers
                     LastName = model.LastName,
                     HomeCity = model.HomeCity,
                     Gender = model.Gender,
-                    Email = model.Email
+                    Email = model.Email,
+                    ProfilePicture = photo
                 };
+                // TODO : Add profile for photo
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
