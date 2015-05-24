@@ -152,7 +152,16 @@ namespace PompeiiSquare.Server.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email };
+                //var user = new User { UserName = model.Email, Email = model.Email };
+                var user = new User 
+                {
+                    UserName = model.UserName,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    HomeCity = model.HomeCity,
+                    Gender = model.Gender,
+                    Email = model.Email
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

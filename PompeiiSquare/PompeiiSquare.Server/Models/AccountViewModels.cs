@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using PompeiiSquare.Models;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace PompeiiSquare.Server.Models
@@ -64,6 +65,23 @@ namespace PompeiiSquare.Server.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        public string UserName { get; set; }
+
+        [Required]
+        [MinLength(2)]
+        public string FirstName { get; set; }
+
+        [Required]
+        [MinLength(2)]
+        public string LastName { get; set; }
+
+        public string HomeCity { get; set; }
+
+        public Gender Gender { get; set; }
+
+        public virtual Photo ProfilePicture { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
