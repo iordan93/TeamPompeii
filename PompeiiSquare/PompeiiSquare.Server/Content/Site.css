@@ -51,6 +51,10 @@ a.glyphicon {
     text-decoration: none;
 }
 
+a.glyphicon:hover {
+    color: #000dff;
+}
+
 a.glyphicon>span{
     margin-left: 5px;
 }
