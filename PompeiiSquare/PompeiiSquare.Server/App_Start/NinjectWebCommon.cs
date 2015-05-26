@@ -10,6 +10,7 @@ namespace PompeiiSquare.Server.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using PompeiiSquare.Data.UnitOfWork;
 
     public static class NinjectWebCommon 
     {
@@ -61,6 +62,7 @@ namespace PompeiiSquare.Server.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<IPompeiiSquareData>().To<PompeiiSquareData>();
         }        
     }
 }

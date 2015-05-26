@@ -12,17 +12,22 @@ using PompeiiSquare.Data.UnitOfWork;
 
 namespace PompeiiSquare.Server.Controllers
 {
-    public class VenuesController : Controller
+    public class VenuesController : BaseController
     {
         private PompeiiSquareDbContext db = new PompeiiSquareDbContext();
-        private PompeiiSquareData data = new PompeiiSquareData();
         // TODO: use data for controller !!!
+
+        public VenuesController(IPompeiiSquareData data)
+            :base(data)
+        {
+
+        }
 
         // GET: Venues
         public ActionResult Index()
         {
-            return View(db.Venues.ToList());
-            //return View(data.Venues);
+            //return View(db.Venues.ToList());
+            return View(Data.Venues.All());
         }
 
         // GET: Venues/Details/5
@@ -32,11 +37,14 @@ namespace PompeiiSquare.Server.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Venue venue = db.Venues.Find(id);
+
+            Venue venue = Data.Venues.Find(id); // db.Venues.Find(id);
+
             if (venue == null)
             {
                 return HttpNotFound();
             }
+
             return View(venue);
         }
 
@@ -55,8 +63,10 @@ namespace PompeiiSquare.Server.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Venues.Add(venue);
-                db.SaveChanges();
+                this.Data.Venues.Add(venue);
+                this.Data.SaveChanges();
+                //db.Venues.Add(venue);
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -70,11 +80,14 @@ namespace PompeiiSquare.Server.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Venue venue = db.Venues.Find(id);
+
+            Venue venue = this.Data.Venues.Find(id); //db.Venues.Find(id);
+
             if (venue == null)
             {
                 return HttpNotFound();
             }
+
             return View(venue);
         }
 
@@ -101,11 +114,14 @@ namespace PompeiiSquare.Server.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Venue venue = db.Venues.Find(id);
+
+            Venue venue = this.Data.Venues.Find(id); //db.Venues.Find(id);
+
             if (venue == null)
             {
                 return HttpNotFound();
             }
+
             return View(venue);
         }
 
@@ -114,9 +130,9 @@ namespace PompeiiSquare.Server.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Venue venue = db.Venues.Find(id);
-            db.Venues.Remove(venue);
-            db.SaveChanges();
+            Venue venue = this.Data.Venues.Find(id); //db.Venues.Find(id);
+            this.Data.Venues.Remove(venue);
+            this.Data.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -126,6 +142,7 @@ namespace PompeiiSquare.Server.Controllers
             {
                 db.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }
