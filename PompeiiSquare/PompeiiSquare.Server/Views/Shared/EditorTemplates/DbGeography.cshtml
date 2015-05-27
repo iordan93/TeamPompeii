@@ -1,5 +1,7 @@
-﻿@model System.Data.Spatial.DbGeography
-@Html.TextBox("")
+﻿@using PompeiiSquare.Server.Utilities;
+@model System.Data.Spatial.DbGeography
+
+@Html.TextBox("", "", htmlAttributes: new { @class = "form-control" })
 @if (Model != null)
 {
     <script>
