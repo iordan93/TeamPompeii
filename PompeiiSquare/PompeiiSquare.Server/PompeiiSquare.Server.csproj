@@ -226,6 +226,11 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\VenueAdministrator\Controllers\BaseVenueAdministratorController.cs" />
+    <Compile Include="Areas\VenueAdministrator\Controllers\VenuesController.cs" />
+    <Compile Include="Areas\VenueAdministrator\Models\OpenHoursBindingModel.cs" />
+    <Compile Include="Areas\VenueAdministrator\Models\VenueCreateBindingModel.cs" />
+    <Compile Include="Areas\VenueAdministrator\VenueManagerAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -240,6 +245,8 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\DecimalModelBinder.cs" />
+    <Compile Include="Utilities\HtmlExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -256,6 +263,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Areas\VenueAdministrator\Views\web.config" />
+    <Content Include="Areas\VenueAdministrator\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\VenueAdministrator\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\VenueAdministrator\Views\Venues\Create.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Icon.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -309,14 +320,12 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Venues\Create.cshtml" />
-    <Content Include="Views\Venues\Delete.cshtml" />
-    <Content Include="Views\Venues\Details.cshtml" />
-    <Content Include="Views\Venues\Edit.cshtml" />
-    <Content Include="Views\Venues\Index.cshtml" />
+    <Content Include="Areas\VenueAdministrator\Views\Shared\DisplayTemplates\DbGeography.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\VenueAdministrator\Views\BaseVenueAdministrator\" />
+    <Folder Include="Areas\VenueAdministrator\Views\Shared\EditorTemplates\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

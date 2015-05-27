@@ -15,10 +15,10 @@ namespace PompeiiSquare.Server.Controllers
     public class VenuesController : BaseController
     {
         private PompeiiSquareDbContext db = new PompeiiSquareDbContext();
-        // TODO: use data for controller !!!
+        // TODO: use data for controller!!!
 
         public VenuesController(IPompeiiSquareData data)
-            :base(data)
+            : base(data)
         {
 
         }
@@ -27,7 +27,7 @@ namespace PompeiiSquare.Server.Controllers
         public ActionResult Index()
         {
             //return View(db.Venues.ToList());
-            return View(Data.Venues.All());
+            return View(this.Data.Venues.All());
         }
 
         // GET: Venues/Details/5

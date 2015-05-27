@@ -1,5 +1,6 @@
 ﻿using PompeiiSquare.Data;
 using PompeiiSquare.Data.Migrations;
+using PompeiiSquare.Server.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -16,7 +17,12 @@ namespace PompeiiSquare.Server
         protected void Application_Start()
         {
             Database.SetInitializer<PompeiiSquareDbContext>(new MigrateDatabaseToLatestVersion<PompeiiSquareDbContext, Configuration>());
-            
+
+            ModelBinders.Binders.Add(typeof(double), new DecimalModelBinder());
+            ModelBinders.Binders.Add(typeof(double?), new DecimalModelBinder());
+            ModelBinders.Binders.Add(typeof(decimal), new DecimalModelBinder());
+            ModelBinders.Binders.Add(typeof(decimal?), new DecimalModelBinder());
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
