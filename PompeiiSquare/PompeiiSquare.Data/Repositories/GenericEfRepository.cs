@@ -28,14 +28,14 @@
             return this.entitySet.Find(id);
         }
 
-        public void Add(TEntity entity)
+        public TEntity Add(TEntity entity)
         {
-            this.ChangeState(entity, EntityState.Added);
+            return this.ChangeState(entity, EntityState.Added);
         }
 
-        public void Update(TEntity entity)
+        public TEntity Update(TEntity entity)
         {
-            this.ChangeState(entity, EntityState.Modified);
+            return this.ChangeState(entity, EntityState.Modified);
         }
 
         public void Remove(TEntity entity)
@@ -55,7 +55,7 @@
             this.dbContext.SaveChanges();
         }
 
-        private void ChangeState(TEntity entity, EntityState state)
+        private TEntity ChangeState(TEntity entity, EntityState state)
         {
             var entry = this.dbContext.Entry(entity);
             if (entry.State == EntityState.Detached)
@@ -64,6 +64,7 @@
             }
 
             entry.State = state;
+            return entity;
         }
     }
 }

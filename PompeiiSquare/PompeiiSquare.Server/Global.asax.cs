@@ -1,4 +1,5 @@
-﻿using PompeiiSquare.Data;
+﻿using AutoMapper;
+using PompeiiSquare.Data;
 using PompeiiSquare.Data.Migrations;
 using PompeiiSquare.Server.Utilities;
 using System;
@@ -24,6 +25,8 @@ namespace PompeiiSquare.Server
             ModelBinders.Binders.Add(typeof(decimal), new DecimalModelBinder());
             ModelBinders.Binders.Add(typeof(decimal?), new DecimalModelBinder());
             ModelBinders.Binders.Add(typeof(DbGeography), new DbGeographyModelBinder());
+
+            MapperUtilities.CreateAllMaps();
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

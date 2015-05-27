@@ -248,6 +248,7 @@
     <Compile Include="Utilities\DbGeographyModelBinder.cs" />
     <Compile Include="Utilities\DecimalModelBinder.cs" />
     <Compile Include="Utilities\HtmlExtensions.cs" />
+    <Compile Include="Utilities\MapperUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
