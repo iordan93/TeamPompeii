@@ -19,7 +19,7 @@
         }
 
         protected BaseController(IPompeiiSquareData data, User userProfile)
-            :this(data)
+            : this(data)
         {
             this.UserProfile = userProfile;
         }
