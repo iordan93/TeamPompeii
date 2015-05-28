@@ -27,7 +27,8 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return this.View();
+            var model = new VenueCreateBindingModel();
+            return this.View(model);
         }
 
         [HttpPost, ValidateAntiForgeryToken]

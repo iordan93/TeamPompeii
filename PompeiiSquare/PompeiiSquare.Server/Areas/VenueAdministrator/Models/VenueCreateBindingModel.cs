@@ -9,6 +9,11 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Models
 {
     public class VenueCreateBindingModel
     {
+        public VenueCreateBindingModel()
+        {
+            this.OpenHours = new List<OpenHoursBindingModel>(2) { new OpenHoursBindingModel(), new OpenHoursBindingModel() };
+        }
+
         [Required, MinLength(2, ErrorMessage = "The name must be at least 2 symbols long.")]
         public string Name { get; set; }
 
