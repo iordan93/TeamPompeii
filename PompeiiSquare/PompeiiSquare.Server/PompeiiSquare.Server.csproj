@@ -269,6 +269,7 @@
     <Content Include="Areas\VenueAdministrator\Views\_ViewStart.cshtml" />
     <Content Include="Areas\VenueAdministrator\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\VenueAdministrator\Views\Venues\Create.cshtml" />
+    <Content Include="Areas\VenueAdministrator\Views\Venues\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Icon.png" />
     <Content Include="Scripts\bootstrap.js" />

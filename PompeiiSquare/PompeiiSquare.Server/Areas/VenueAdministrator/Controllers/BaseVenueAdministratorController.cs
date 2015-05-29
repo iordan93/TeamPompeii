@@ -9,7 +9,7 @@
     using PompeiiSquare.Data.UnitOfWork;
     using PompeiiSquare.Server.Controllers;
 
-    //[Authorize(Roles = "VenueAdministrator")]
+    //[Authorize(Roles = "VenueAdministrator")] TODO: Uncomment this later!
     public abstract class BaseVenueAdministratorController : BaseController
     {
         protected BaseVenueAdministratorController(IPompeiiSquareData data)
