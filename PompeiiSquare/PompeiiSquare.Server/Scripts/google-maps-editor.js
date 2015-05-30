@@ -5,11 +5,11 @@ maps.mapInstanceId = "map_canvas";
 maps.markerToSet = null;
 
 function initialize() {
-    var latlng = new google.maps.LatLng(40.716948, -74.003563); //a nice default
+    var latlng = new google.maps.LatLng(42.694043989919, 23.3213996887207);
     var options = {
         zoom: 14, center: latlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        maxZoom: 14 //so extents zoom doesn't go nuts
+        maxZoom: 14
     };
     maps.mapInstance = new google.maps.Map(document.getElementById(maps.mapInstanceId), options);
 

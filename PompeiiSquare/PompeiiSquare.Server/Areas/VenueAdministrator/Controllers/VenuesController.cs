@@ -17,7 +17,6 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
         {
         }
 
-        // GET: VenueAdministrator/Venues
         public ActionResult Index()
         {
             // TODO: Return list
@@ -28,6 +27,7 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
         public ActionResult Create()
         {
             var model = new VenueCreateBindingModel();
+            ViewBag.Groups = this.Data.VenueGroups.All().Select(g => new VenueGroupBindingModel() { Id = g.Id, Name = g.Name }).ToList();
             return this.View(model);
         }
 
@@ -35,8 +35,34 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
         public ActionResult Create(VenueCreateBindingModel model)
         {
             var venue = Mapper.Map<Venue>(model);
+            var openHours = venue.OpenHours;
+            venue.OpenHours = null;
             var tagNames = model.Tags
                 .Split(new[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries);
+            var tags = MapTags(tagNames);
+
+            var groups = MapGroups(model.Groups);
+
+            venue.Tags = tags;
+            venue.Groups = groups;
+            venue.CreatedAt = DateTime.Now;
+            this.Data.Venues.Add(venue);
+            this.Data.SaveChanges();
+
+            venue.OpenHours = openHours;
+            this.Data.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [ActionName("AddNewOpenHours")]
+        public ActionResult AddNewOpenHours()
+        {
+            return this.PartialView();
+        }
+
+        [NonAction]
+        private List<Tag> MapTags(string[] tagNames)
+        {
             var tags = new List<Tag>();
             foreach (var tagName in tagNames)
             {
@@ -50,17 +76,23 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
                 tags.Add(tag);
             }
 
-            venue.Tags = tags;
-            venue.CreatedAt = DateTime.Now;
-            this.Data.Venues.Add(venue);
-            this.Data.SaveChanges();
-            return RedirectToAction("Index");
+            return tags;
         }
 
-        [ActionName("AddNewOpenHours")]
-        public ActionResult AddNewOpenHours()
+        [NonAction]
+        private List<VenueGroup> MapGroups(IList<int> modelGroups)
         {
-            return this.PartialView();
+            var groups = new List<VenueGroup>();
+            foreach (var group in modelGroups)
+            {
+                var groupFromDb = this.Data.VenueGroups.Find(group);
+                if (groupFromDb != null)
+                {
+                    groups.Add(groupFromDb);
+                }
+            }
+
+            return groups;
         }
     }
 }

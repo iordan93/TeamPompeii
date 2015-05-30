@@ -25,11 +25,12 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Models
 
         public DbGeography Location { get; set; }
 
-        [Range(1, 4)]
+        [Range(0, 4)]
         public int PriceTier { get; set; }
 
-        public IList<string> Groups { get; set; }
+        public IList<int> Groups { get; set; }
 
+        [Display(Name = "Open hours")]
         public IList<OpenHoursBindingModel> OpenHours { get; set; }
 
         [Required, MinLength(10, ErrorMessage = "The description must be at least 10 symbols long.")]

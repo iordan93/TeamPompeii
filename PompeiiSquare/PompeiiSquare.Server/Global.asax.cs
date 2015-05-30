@@ -1,13 +1,8 @@
-﻿using AutoMapper;
-using PompeiiSquare.Data;
+﻿using PompeiiSquare.Data;
 using PompeiiSquare.Data.Migrations;
+using PompeiiSquare.Server.App_Start;
 using PompeiiSquare.Server.Utilities;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Spatial;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -19,19 +14,15 @@ namespace PompeiiSquare.Server
         protected void Application_Start()
         {
             Database.SetInitializer<PompeiiSquareDbContext>(new MigrateDatabaseToLatestVersion<PompeiiSquareDbContext, Configuration>());
-
-            ModelBinders.Binders.Add(typeof(double), new DecimalModelBinder());
-            ModelBinders.Binders.Add(typeof(double?), new DecimalModelBinder());
-            ModelBinders.Binders.Add(typeof(decimal), new DecimalModelBinder());
-            ModelBinders.Binders.Add(typeof(decimal?), new DecimalModelBinder());
-            ModelBinders.Binders.Add(typeof(DbGeography), new DbGeographyModelBinder());
-
+            
             MapperUtilities.CreateAllMaps();
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ViewEnginesConfig.RegisterViewEngines(ViewEngines.Engines);
+            ModelBindersConfig.RegisterModelBinders();
         }
     }
 }

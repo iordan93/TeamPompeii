@@ -12,6 +12,7 @@ namespace PompeiiSquare.Models
         public Venue()
         {
             this.Groups = new HashSet<VenueGroup>();
+            this.OpenHours = new HashSet<OpenHours>();
             this.Checkins = new HashSet<Checkin>();
             this.Tags = new HashSet<Tag>();
             this.Tips = new HashSet<Tip>();
@@ -32,7 +33,7 @@ namespace PompeiiSquare.Models
 
         public virtual ICollection<VenueGroup> Groups { get; set; }
 
-        public OpenHours OpenHours { get; set; }
+        public virtual ICollection<OpenHours> OpenHours { get; set; }
 
         public string Description { get; set; }
 

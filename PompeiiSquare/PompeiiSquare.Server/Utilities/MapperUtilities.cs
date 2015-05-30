@@ -10,10 +10,17 @@ namespace PompeiiSquare.Server.Utilities
 {
     public class MapperUtilities
     {
-        public static void CreateAllMaps() 
+        public static void CreateAllMaps()
         {
+            Mapper.CreateMap<OpenHoursBindingModel, OpenHours>();
+
+            Mapper.CreateMap<VenueGroupBindingModel, VenueGroup>()
+                .ForMember(v => v.Venues, opt => opt.Ignore());
+
             Mapper.CreateMap<VenueCreateBindingModel, Venue>()
-                .ForMember(v => v.Tags, opt => opt.Ignore());
+                .ForMember(v => v.OpenHours, opt => opt.MapFrom(v => v.OpenHours))
+                .ForMember(v => v.Tags, opt => opt.Ignore())
+                .ForMember(v => v.Groups, opt => opt.Ignore());
         }
     }
 }

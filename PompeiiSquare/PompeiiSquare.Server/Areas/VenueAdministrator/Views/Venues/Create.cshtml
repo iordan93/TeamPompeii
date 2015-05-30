@@ -1,4 +1,6 @@
 ﻿@model PompeiiSquare.Server.Areas.VenueAdministrator.Models.VenueCreateBindingModel
+@using PompeiiSquare.Server.Areas.VenueAdministrator.Models;
+
 @{
     ViewBag.Title = "Create new venue";
 }
@@ -61,7 +63,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Groups, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Groups, new { htmlAttributes = new { @class = "form-control" } })
+                @{var groups = (ViewData["Groups"] as IEnumerable<VenueGroupBindingModel>).Select(g => new SelectListItem() { Value = g.Id.ToString(), Text = g.Name });}
+                @Html.ListBox("Groups", groups, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Groups, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -97,16 +100,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-        //var nextOpenHoursId = 1;
-        //function changeNextOpenHoursId() {
-        //    var fieldsToChange = $(this).siblings().first().children().last();
-        //    var weekdayField = fieldsToChange.find("input[name='Weekday']");
-        //    var hoursField = fieldsToChange.find("input[name='Hours']");
-        //    weekdayField.attr("name", "OpenHours[" + (nextOpenHoursId) + "]." + weekdayField.attr("name"));
-        //    hoursField.attr("name", "OpenHours[" + (nextOpenHoursId) + "]." + hoursField.attr("name"));
-        //    nextOpenHoursId++;
-        //}
-
         function updateIds() {
             updateWorkingHoursIds();
         }
@@ -122,6 +115,10 @@
                 .each(function (index, element) {
                     $(element).attr("name", "OpenHours[" + (nextOpenHoursId++) + "]." + $(element).attr("name"));
                 });
+        }
+
+        function removeWorkingHoursItem(e) {
+            $(e.target).parents(".row").remove();
         }
     </script>
 }

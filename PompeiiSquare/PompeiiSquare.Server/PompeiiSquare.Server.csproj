@@ -223,11 +223,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\ModelBindersConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\ViewEnginesConfiguration.cs" />
     <Compile Include="Areas\VenueAdministrator\Controllers\BaseVenueAdministratorController.cs" />
     <Compile Include="Areas\VenueAdministrator\Controllers\VenuesController.cs" />
+    <Compile Include="Areas\VenueAdministrator\Models\GroupBindingModel.cs" />
     <Compile Include="Areas\VenueAdministrator\Models\OpenHoursBindingModel.cs" />
     <Compile Include="Areas\VenueAdministrator\Models\VenueCreateBindingModel.cs" />
     <Compile Include="Areas\VenueAdministrator\VenueManagerAreaRegistration.cs" />
@@ -269,8 +272,8 @@
     <Content Include="Areas\VenueAdministrator\Views\_ViewStart.cshtml" />
     <Content Include="Areas\VenueAdministrator\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\VenueAdministrator\Views\Venues\Create.cshtml" />
-    <Content Include="Areas\VenueAdministrator\Views\Venues\Index.cshtml" />
     <Content Include="Areas\VenueAdministrator\Views\Venues\AddNewOpenHours.cshtml" />
+    <Content Include="Areas\VenueAdministrator\Views\Venues\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Icon.png" />
     <Content Include="Scripts\bootstrap.js" />
