@@ -63,9 +63,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Groups, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @{var groups = (ViewData["Groups"] as IEnumerable<VenueGroupBindingModel>).Select(g => new SelectListItem() { Value = g.Id.ToString(), Text = g.Name });}
+                <p class="text-muted">Press <kbd>Ctrl</kbd> to select multiple groups</p>
+                @{var groups = (ViewData["Groups"] as IEnumerable<VenueGroupBindingModel>)
+                      .Select(g => new SelectListItem() { Value = g.Id.ToString(), Text = g.Name });}
                 @Html.ListBox("Groups", groups, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Groups, "", new { @class = "text-danger" })
+                <a class="btn btn-success" id="add-new-group" data-toggle="modal" data-target="#addGroup">
+                    <i class="glyphicon glyphicon-plus"></i> Add new group
+                </a>
             </div>
         </div>
 
@@ -97,28 +102,49 @@
 
 @section Scripts {
     <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
     <script>
-        function updateIds() {
-            updateWorkingHoursIds();
-        }
+    function updateIds() {
+        var nextOpenHoursId = 1;
+        $("input[name='Weekday']")
+            .each(function (index, element) {
+                $(element).attr("name", "OpenHours[" + (nextOpenHoursId++) + "]." + $(element).attr("name"));
+            });
+        nextOpenHoursId = 1;
+        $("input[name='Hours']")
+            .each(function (index, element) {
+                $(element).attr("name", "OpenHours[" + (nextOpenHoursId++) + "]." + $(element).attr("name"));
+            });
+    }
 
-        function updateWorkingHoursIds() {
-            var nextOpenHoursId = 1;
-            $("input[name='Weekday']")
-                .each(function (index, element) {
-                    $(element).attr("name", "OpenHours[" + (nextOpenHoursId++) + "]." + $(element).attr("name"));
-                });
-            nextOpenHoursId = 1;
-            $("input[name='Hours']")
-                .each(function (index, element) {
-                    $(element).attr("name", "OpenHours[" + (nextOpenHoursId++) + "]." + $(element).attr("name"));
-                });
-        }
+    function removeWorkingHoursItem(e) {
+        $(e.target).parents(".row").remove();
+    }
 
-        function removeWorkingHoursItem(e) {
-            $(e.target).parents(".row").remove();
-        }
+    $(function () {
+        $("[data-toggle='tooltip']").tooltip();
+    });
     </script>
 }
+
+<div class="modal fade" id="addGroup" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form-horizontal">
+                <div class="modal-header" id="new-category-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add new group</h4>
+                </div>
+                <div class="form-group">
+                    <label for="group-name" class="col-sm-3 control-label">Group name</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="group-name" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="add-new-category" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -31,7 +31,7 @@ footer {
     bottom: 0;
     left: 0;
     right: 0;
-    padding:5px;
+    padding: 5px;
 }
 
 .input-lg {
@@ -39,7 +39,15 @@ footer {
     margin: 0 0 20px 0;
 }
 
-a.btn.btn-success.btn-lg{
-    margin-left:5px;
+a.btn.btn-success.btn-lg {
+    margin-left: 5px;
     margin-bottom: 5px;
+}
+
+#new-category-header {
+    margin-bottom: 8px;
+}
+
+#add-new-group {
+    margin-top: 8px;
 }

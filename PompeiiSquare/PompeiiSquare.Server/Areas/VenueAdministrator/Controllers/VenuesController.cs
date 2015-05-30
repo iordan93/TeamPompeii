@@ -60,6 +60,12 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
             return this.PartialView();
         }
 
+        [ActionName("AddNewGroup")]
+        public ActionResult AddNewGroup()
+        {
+            return this.PartialView();
+        }
+
         [NonAction]
         private List<Tag> MapTags(string[] tagNames)
         {
