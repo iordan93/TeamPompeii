@@ -74,7 +74,7 @@
                 @Ajax.ActionLink(
                     "Add new",
                     "AddNewOpenHours",
-                    new AjaxOptions() { InsertionMode = InsertionMode.InsertAfter, UpdateTargetId = "open-hours-items", OnSuccess = "changeNextOpenHoursId" })
+                    new AjaxOptions() { InsertionMode = InsertionMode.InsertAfter, UpdateTargetId = "open-hours-items" })
             </div>
         </div>
         <div class="form-group">
@@ -84,10 +84,9 @@
                 @Html.ValidationMessageFor(model => model.Tags, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default" onclick="updateIds()" />
             </div>
         </div>
     </div>
@@ -98,14 +97,31 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-        var nextOpenHoursId = 1;
-        function changeNextOpenHoursId() {
-            var fieldsToChange = $(this).siblings().first().children().last();
-            var weekdayField = fieldsToChange.find("input[name='Weekday']");
-            var hoursField = fieldsToChange.find("input[name='Hours']");
-            weekdayField.attr("name", "OpenHours[" + (nextOpenHoursId) + "]." + weekdayField.attr("name"));
-            hoursField.attr("name", "OpenHours[" + (nextOpenHoursId) + "]." + hoursField.attr("name"));
-            nextOpenHoursId++;
+        //var nextOpenHoursId = 1;
+        //function changeNextOpenHoursId() {
+        //    var fieldsToChange = $(this).siblings().first().children().last();
+        //    var weekdayField = fieldsToChange.find("input[name='Weekday']");
+        //    var hoursField = fieldsToChange.find("input[name='Hours']");
+        //    weekdayField.attr("name", "OpenHours[" + (nextOpenHoursId) + "]." + weekdayField.attr("name"));
+        //    hoursField.attr("name", "OpenHours[" + (nextOpenHoursId) + "]." + hoursField.attr("name"));
+        //    nextOpenHoursId++;
+        //}
+
+        function updateIds() {
+            updateWorkingHoursIds();
+        }
+
+        function updateWorkingHoursIds() {
+            var nextOpenHoursId = 1;
+            $("input[name='Weekday']")
+                .each(function (index, element) {
+                    $(element).attr("name", "OpenHours[" + (nextOpenHoursId++) + "]." + $(element).attr("name"));
+                });
+            nextOpenHoursId = 1;
+            $("input[name='Hours']")
+                .each(function (index, element) {
+                    $(element).attr("name", "OpenHours[" + (nextOpenHoursId++) + "]." + $(element).attr("name"));
+                });
         }
     </script>
 }
