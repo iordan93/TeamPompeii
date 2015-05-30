@@ -56,5 +56,13 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
             this.Data.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        [ActionName("AddNewOpenHours")]
+        public ActionResult AddNewOpenHours(int id, VenueCreateBindingModel model)
+        {
+            var openHours = new OpenHoursBindingModel();
+            model.OpenHours.Add(openHours);
+            return this.PartialView(openHours);
+        }
     }
 }

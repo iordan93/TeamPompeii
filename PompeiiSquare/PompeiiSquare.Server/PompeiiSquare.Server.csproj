@@ -270,6 +270,7 @@
     <Content Include="Areas\VenueAdministrator\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\VenueAdministrator\Views\Venues\Create.cshtml" />
     <Content Include="Areas\VenueAdministrator\Views\Venues\Index.cshtml" />
+    <Content Include="Areas\VenueAdministrator\Views\Venues\AddNewOpenHours.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Icon.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -281,6 +282,8 @@
     <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -330,7 +333,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\VenueAdministrator\Views\BaseVenueAdministrator\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
