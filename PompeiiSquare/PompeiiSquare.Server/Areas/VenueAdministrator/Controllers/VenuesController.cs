@@ -5,6 +5,7 @@ using PompeiiSquare.Server.Areas.VenueAdministrator.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -53,6 +54,46 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
             venue.OpenHours = openHours;
             this.Data.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Venue venueFromDb = this.Data.Venues.Find(id);
+            var venue = Mapper.Map<VenueEditBindingModel>(venueFromDb);
+
+            if (venue == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.Groups = this.Data.VenueGroups.All().Select(g => new VenueGroupBindingModel() { Id = g.Id, Name = g.Name }).ToList();
+            return this.View(venue);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Edit(VenueEditBindingModel model)
+        {
+            if (model.Id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Venue venueFromDb = this.Data.Venues.Find(model.Id);
+            venueFromDb.Name = model.Name;
+            venueFromDb.Address = model.Address;
+            venueFromDb.Contact = model.Contact;
+            venueFromDb.Location = model.Location;
+            venueFromDb.PriceTier = model.PriceTier;
+            venueFromDb.Description = model.Description;
+            this.Data.SaveChanges();
+
+            return this.RedirectToAction("Index");
         }
 
         [ActionName("AddNewOpenHours")]

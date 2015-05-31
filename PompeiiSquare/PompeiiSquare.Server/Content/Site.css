@@ -72,3 +72,11 @@ div.panel-primary {
 div.panel-body > div.well {
     margin-bottom: 0;
 }
+
+.delete-edit-venue{
+    margin-right: 0;
+}
+
+.delete-edit-venue a.pull-right{
+    margin: 0 5px;
+}
