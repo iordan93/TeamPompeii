@@ -60,3 +60,11 @@ a.btn.btn-success.btn-lg {
 #Location {
     margin-bottom: 10px;
 }
+
+span.venue-info {
+    display: block;
+}
+
+div.panel-primary {
+    margin: 10px 0;
+}
