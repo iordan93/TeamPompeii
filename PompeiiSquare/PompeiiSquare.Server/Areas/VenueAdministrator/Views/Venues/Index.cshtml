@@ -17,8 +17,8 @@
                 <span class="venue-info">@Html.DisplayNameFor(model => model.Likes): @Html.DisplayFor(modelItem => item.Likes)</span>
                 <div class="row delete-edit-venue">
                     @* TODO: Check is user owner !!! *@
-                    <a href="#" class="btn btn-danger pull-right">Delete</a>
-                    <a href="#" class="btn btn-primary pull-right">Edit</a>
+                    @Html.ActionLink("Delete", "Delete", "Venues", new { Area = "VenueAdministrator", Id = @Html.DisplayFor(modelItem => item.Id) }, new { @class = "btn btn-danger pull-right" })
+                    @Html.ActionLink("Edit", "Edit", "Venues", new { Area = "VenueAdministrator", Id = @Html.DisplayFor(modelItem => item.Id) }, new { @class = "btn btn-primary pull-right" })
                 </div>
             </div>
         </div>

@@ -234,6 +234,7 @@
     <Compile Include="Areas\VenueAdministrator\Models\GroupBindingModel.cs" />
     <Compile Include="Areas\VenueAdministrator\Models\OpenHoursBindingModel.cs" />
     <Compile Include="Areas\VenueAdministrator\Models\VenueCreateBindingModel.cs" />
+    <Compile Include="Areas\VenueAdministrator\Models\VenueDeleteBindingModel.cs" />
     <Compile Include="Areas\VenueAdministrator\Models\VenueEditBindingModel.cs" />
     <Compile Include="Areas\VenueAdministrator\VenueManagerAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -282,6 +283,7 @@
     </Content>
     <Content Include="Areas\VenueAdministrator\Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Areas\VenueAdministrator\Views\Venues\Edit.cshtml" />
+    <Content Include="Areas\VenueAdministrator\Views\Venues\Delete.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Icon.png" />
     <Content Include="Scripts\bootstrap.js" />

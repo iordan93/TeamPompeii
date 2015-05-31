@@ -96,6 +96,36 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
             return this.RedirectToAction("Index");
         }
 
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Venue venueFromDb = this.Data.Venues.Find(id);
+            var venue = Mapper.Map<VenueDeleteBindingModel>(venueFromDb);
+
+
+            if (venue == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(venue);
+        }
+
+        // POST: Venues/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Venue venue = this.Data.Venues.Find(id);
+            this.Data.Venues.Remove(venue);
+            this.Data.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         [ActionName("AddNewOpenHours")]
         public ActionResult AddNewOpenHours()
         {
