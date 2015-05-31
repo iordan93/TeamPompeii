@@ -23,7 +23,7 @@ namespace PompeiiSquare.Data.Migrations
                 var store = new RoleStore<IdentityRole>(context);
                 var manager = new RoleManager<IdentityRole>(store);
                 var adminRole = new IdentityRole { Name = "Admin" };
-                var VenueAdminRole = new IdentityRole { Name = "VenueAdmin" };
+                var VenueAdminRole = new IdentityRole { Name = "VenueAdministrator" };
                 var RegisteredUserRole = new IdentityRole { Name = "RegisteredUser" };
                 var GuestRole = new IdentityRole { Name = "Guest" };
 
@@ -42,7 +42,7 @@ namespace PompeiiSquare.Data.Migrations
 
                 var store = new UserStore<User>(context);
                 var manager = new UserManager<User>(store);
-                var user = new User
+                var founder = new User
                 {
                     UserName = "Founder",
                     FirstName = "Pesho",
@@ -52,8 +52,20 @@ namespace PompeiiSquare.Data.Migrations
                     Gender = male
                 };
 
-                manager.Create(user, "adminPassword");
-                manager.AddToRole(user.Id, "Admin");
+                var venueAdmin = new User
+                {
+                    UserName = "Gosho",
+                    FirstName = "Georgi",
+                    LastName = "Goshov",
+                    Email = "gosho@softuni.bg",
+                    HomeCity = "Sofia",
+                    Gender = male
+                };
+
+                manager.Create(founder, "adminPassword");
+                manager.AddToRole(founder.Id, "Admin");
+                manager.Create(venueAdmin, "venueAdminPassword");
+                manager.AddToRole(venueAdmin.Id, "VenueAdministrator");
             }
 
             if (!context.VenueGroups.Any())
@@ -80,7 +92,7 @@ namespace PompeiiSquare.Data.Migrations
                 context.Tags.Add(cheap);
             }
 
-            //TODO : Add more seed data
+            //TODO : Add more seed data and Update admin passwords
         }
     }
 }
