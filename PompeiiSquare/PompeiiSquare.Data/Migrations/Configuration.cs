@@ -1,5 +1,8 @@
 namespace PompeiiSquare.Data.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using PompeiiSquare.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -15,18 +18,69 @@ namespace PompeiiSquare.Data.Migrations
 
         protected override void Seed(PompeiiSquare.Data.PompeiiSquareDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            if (!context.Roles.Any(r => r.Name == "Admin"))
+            {
+                var store = new RoleStore<IdentityRole>(context);
+                var manager = new RoleManager<IdentityRole>(store);
+                var adminRole = new IdentityRole { Name = "Admin" };
+                var VenueAdminRole = new IdentityRole { Name = "VenueAdmin" };
+                var RegisteredUserRole = new IdentityRole { Name = "RegisteredUser" };
+                var GuestRole = new IdentityRole { Name = "Guest" };
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+                manager.Create(adminRole);
+                manager.Create(VenueAdminRole);
+                manager.Create(RegisteredUserRole);
+                manager.Create(GuestRole);
+            }
+
+            if (!context.Users.Any(u => u.UserName == "Founder"))
+            {
+                var male = new Gender { GenderName = "Male" };
+                var female = new Gender { GenderName = "Female" };
+                context.Gender.Add(male);
+                context.Gender.Add(female);
+
+                var store = new UserStore<User>(context);
+                var manager = new UserManager<User>(store);
+                var user = new User
+                {
+                    UserName = "Founder",
+                    FirstName = "Pesho",
+                    LastName = "Peshov",
+                    Email = "pesho@softuni.bg",
+                    HomeCity = "Rousse",
+                    Gender = male
+                };
+
+                manager.Create(user, "adminPassword");
+                manager.AddToRole(user.Id, "Admin");
+            }
+
+            if (!context.VenueGroups.Any())
+            {
+                var drinks = new VenueGroup { Name = "Drinks" };
+                var food = new VenueGroup { Name = "Food" };
+                var fun = new VenueGroup { Name = "Fun" };
+                var nightlife = new VenueGroup { Name = "Nightlife" };
+                var shopping = new VenueGroup { Name = "Shopping" };
+                context.VenueGroups.Add(drinks);
+                context.VenueGroups.Add(food);
+                context.VenueGroups.Add(fun);
+                context.VenueGroups.Add(nightlife);
+                context.VenueGroups.Add(shopping);
+            }
+
+            if (!context.Tags.Any())
+            {
+                var party = new Tag { Name = "Party" };
+                var relax = new Tag { Name = "Relax" };
+                var cheap = new Tag { Name = "Cheap" };
+                context.Tags.Add(party);
+                context.Tags.Add(relax);
+                context.Tags.Add(cheap);
+            }
+
+            //TODO : Add more seed data
         }
     }
 }

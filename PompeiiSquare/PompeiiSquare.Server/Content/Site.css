@@ -68,3 +68,7 @@ span.venue-info {
 div.panel-primary {
     margin: 10px 0;
 }
+
+div.panel-body > div.well {
+    margin-bottom: 0;
+}
