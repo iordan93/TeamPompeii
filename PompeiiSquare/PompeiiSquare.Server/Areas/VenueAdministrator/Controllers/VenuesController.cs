@@ -29,7 +29,7 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
         public ActionResult Create()
         {
             var model = new VenueCreateBindingModel();
-            ViewBag.Groups = this.Data.VenueGroups.All().Select(g => new VenueGroupBindingModel() { Id = g.Id, Name = g.Name }).ToList();
+            ViewBag.Groups = this.Data.VenueGroups.All().Select(g => new GroupBindingModel() { Id = g.Id, Name = g.Name }).ToList();
             return this.View(model);
         }
 
@@ -72,7 +72,7 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.Groups = this.Data.VenueGroups.All().Select(g => new VenueGroupBindingModel() { Id = g.Id, Name = g.Name }).ToList();
+            ViewBag.Groups = this.Data.VenueGroups.All().Select(g => new GroupBindingModel() { Id = g.Id, Name = g.Name }).ToList();
             return this.View(venue);
         }
 

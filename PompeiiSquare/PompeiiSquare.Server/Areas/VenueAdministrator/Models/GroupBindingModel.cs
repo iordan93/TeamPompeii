@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PompeiiSquare.Server.Areas.VenueAdministrator.Models
 {
-    public class VenueGroupBindingModel
+    public class GroupBindingModel
     {
         public int Id { get; set; }
 

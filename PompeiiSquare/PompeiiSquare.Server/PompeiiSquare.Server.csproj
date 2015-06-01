@@ -233,7 +233,7 @@
     <Compile Include="Areas\VenueAdministrator\Controllers\VenuesController.cs" />
     <Compile Include="Areas\VenueAdministrator\Models\VenueDeleteBindingModel.cs" />
     <Compile Include="Areas\VenueAdministrator\Models\VenueEditBindingModel.cs" />
-    <Compile Include="Areas\VenueAdministrator\Models\VenueGroupBindingModel.cs" />
+    <Compile Include="Areas\VenueAdministrator\Models\GroupBindingModel.cs" />
     <Compile Include="Areas\VenueAdministrator\Models\OpenHoursBindingModel.cs" />
     <Compile Include="Areas\VenueAdministrator\Models\VenueCreateBindingModel.cs" />
     <Compile Include="Areas\VenueAdministrator\VenueManagerAreaRegistration.cs" />

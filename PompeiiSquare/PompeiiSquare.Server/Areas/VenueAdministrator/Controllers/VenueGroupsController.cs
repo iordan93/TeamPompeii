@@ -24,7 +24,7 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
         }
 
         [HttpPost, ActionName("Create")]
-        public ActionResult Create(VenueGroupBindingModel model)
+        public ActionResult Create(GroupBindingModel model)
         {
             this.Data.VenueGroups.Add(new VenueGroup() { Name = model.Name });
             this.Data.SaveChanges();

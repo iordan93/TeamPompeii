@@ -14,7 +14,7 @@ namespace PompeiiSquare.Server.Utilities
         {
             Mapper.CreateMap<OpenHoursBindingModel, OpenHours>();
 
-            Mapper.CreateMap<VenueGroupBindingModel, VenueGroup>()
+            Mapper.CreateMap<GroupBindingModel, VenueGroup>()
                 .ForMember(v => v.Venues, opt => opt.Ignore());
 
             Mapper.CreateMap<VenueCreateBindingModel, Venue>()
