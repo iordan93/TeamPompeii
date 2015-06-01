@@ -33,7 +33,7 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.Created);
             }
 
-            return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Group name must be at least 3 symbols.");
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Group name must be at least 3 symbols long.");
         }
     }
 }

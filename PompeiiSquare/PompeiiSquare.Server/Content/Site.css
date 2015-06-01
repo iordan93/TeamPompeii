@@ -93,3 +93,7 @@ a.modal-link.btn.btn-success {
 .create-venue {
     margin-top: 10px;
 }
+
+#create-group-error{
+    color: red;
+}
