@@ -20,9 +20,9 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
 
         public ActionResult Index()
         {
-            // TODO: Return list
-            var venues = Data.Venues.All().ToList();
-            return this.View(venues);
+            // TODO: return VenueShowModels
+            var venuesFromDb = Data.Venues.All().ToList();
+            return this.View(venuesFromDb);
         }
 
         [HttpGet]
