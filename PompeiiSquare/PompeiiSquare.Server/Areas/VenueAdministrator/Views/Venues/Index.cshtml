@@ -11,12 +11,30 @@
         <div class="panel-body">
             <div class="well">
                 <span class="venue-info">@Html.DisplayNameFor(model => model.Address): @Html.DisplayFor(modelItem => item.Address)</span>
-                <span class="venue-info">@Html.DisplayNameFor(model => model.Contact): @Html.DisplayFor(modelItem => item.Contact)</span>
-                <span class="venue-info">@Html.DisplayNameFor(model => model.Location): (@Html.DisplayFor(modelItem => item.Location.Longitude), @Html.DisplayFor(modelItem => item.Location.Latitude))</span>
+                <span class="venue-info">@Html.DisplayNameFor(model => model.Contact): @Html.DisplayFor(modelItem => item.Contact)</span>    
+                @*<span class="venue-info">@Html.DisplayNameFor(model => model.Location): (@Html.DisplayFor(modelItem => item.Location.Longitude), @Html.DisplayFor(modelItem => item.Location.Latitude))</span>*@
                 <span class="venue-info">@Html.DisplayNameFor(model => model.PriceTier): @Html.DisplayFor(modelItem => item.PriceTier)</span>
                 <span class="venue-info">@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(modelItem => item.Description)</span>
                 <span class="venue-info">@Html.DisplayNameFor(model => model.CreatedAt): @Html.DisplayFor(modelItem => item.CreatedAt)</span>
                 <span class="venue-info">@Html.DisplayNameFor(model => model.Likes): @Html.DisplayFor(modelItem => item.Likes)</span>
+                <span class="venue-info">@Html.DisplayNameFor(model => model.OpenHours):
+                    @foreach (var openHour in item.OpenHours)
+                    {
+                        <span>@openHour.Weekday : @openHour.Hours |</span>
+                    }
+                </span>
+                <span class="venue-info">@Html.DisplayNameFor(model => model.Groups):
+                    @foreach (var group in item.Groups)
+                    {
+                        <span class="label label-primary">@group.Name</span>
+                    }
+                </span>
+                <span class="venue-info">@Html.DisplayNameFor(model => model.Tags):
+                    @foreach (var tag in item.Tags)
+                    {
+                        <span class="label label-primary">@tag.Name</span>
+                    }
+                </span>
                 <div class="row delete-edit-venue">
                     @* TODO: Check is user owner !!! *@
                     @Html.ActionLink("Delete", "Delete", "Venues", new { Area = "VenueAdministrator", Id = @Html.DisplayFor(modelItem => item.Id) }, new { @class = "btn btn-danger pull-right" })

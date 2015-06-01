@@ -282,6 +282,8 @@
       <DependentUpon>bootstrap.min.js</DependentUpon>
     </Content>
     <Content Include="Areas\VenueAdministrator\Views\VenueGroups\Create.cshtml" />
+    <Content Include="Areas\VenueAdministrator\Views\Venues\Delete.cshtml" />
+    <Content Include="Areas\VenueAdministrator\Views\Venues\Edit.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Icon.png" />
     <Content Include="Scripts\bootstrap.js" />
