@@ -80,3 +80,12 @@ div.panel-body > div.well {
 .delete-edit-venue a.pull-right{
     margin: 0 5px;
 }
+
+.modal-content {
+    width: 600px !important;
+    margin: 30px auto !important;
+}
+
+a.modal-link.btn.btn-success {
+    margin-top: 10px;
+}
