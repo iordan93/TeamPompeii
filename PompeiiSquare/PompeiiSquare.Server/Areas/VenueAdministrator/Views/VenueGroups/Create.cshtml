@@ -36,6 +36,9 @@
                 },
                 success: function () {
                     location.reload();
+                },
+                error: function (data) {
+                    $("#create-group-error").html(data.statusText)
                 }
             });
         });

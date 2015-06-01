@@ -26,9 +26,14 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
         [HttpPost, ActionName("Create")]
         public ActionResult Create(VenueGroupBindingModel model)
         {
-            this.Data.VenueGroups.Add(new VenueGroup() { Name = model.Name });
-            this.Data.SaveChanges();
-            return new HttpStatusCodeResult(HttpStatusCode.Created);
+            if (ModelState.IsValid)
+            {
+                this.Data.VenueGroups.Add(new VenueGroup() { Name = model.Name });
+                this.Data.SaveChanges();
+                return new HttpStatusCodeResult(HttpStatusCode.Created);
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Group name must be at least 3 symbols.");
         }
     }
 }
