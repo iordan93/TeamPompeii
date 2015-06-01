@@ -1,6 +1,5 @@
 ﻿@model PompeiiSquare.Server.Areas.VenueAdministrator.Models.OpenHoursBindingModel
 <div class="row">
-    <br />
     <div class="col-md-3">
         @Html.EditorFor(model => model.Weekday, new { htmlAttributes = new { @class = "form-control", placeholder = "Weekday" } })
         @Html.ValidationMessageFor(model => model.Weekday, "", new { @class = "text-danger" })

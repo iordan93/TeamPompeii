@@ -52,7 +52,31 @@ a.btn.btn-success.btn-lg {
     margin-top: 8px;
 }
 
-.modal-content {
-    width: 600px !important;
-    margin: 30px auto !important;
-} 
+#open-hours-items div.row{
+    margin-left: 0;
+    margin-bottom: 15px;
+}
+
+#Location {
+    margin-bottom: 10px;
+}
+
+span.venue-info {
+    display: block;
+}
+
+div.panel-primary {
+    margin: 10px 0;
+}
+
+div.panel-body > div.well {
+    margin-bottom: 0;
+}
+
+.delete-edit-venue{
+    margin-right: 0;
+}
+
+.delete-edit-venue a.pull-right{
+    margin: 0 5px;
+}
