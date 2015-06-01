@@ -231,7 +231,7 @@
     <Compile Include="Areas\VenueAdministrator\Controllers\BaseVenueAdministratorController.cs" />
     <Compile Include="Areas\VenueAdministrator\Controllers\VenueGroupsController.cs" />
     <Compile Include="Areas\VenueAdministrator\Controllers\VenuesController.cs" />
-    <Compile Include="Areas\VenueAdministrator\Models\GroupBindingModel.cs" />
+    <Compile Include="Areas\VenueAdministrator\Models\VenueGroupBindingModel.cs" />
     <Compile Include="Areas\VenueAdministrator\Models\OpenHoursBindingModel.cs" />
     <Compile Include="Areas\VenueAdministrator\Models\VenueCreateBindingModel.cs" />
     <Compile Include="Areas\VenueAdministrator\VenueManagerAreaRegistration.cs" />
@@ -279,6 +279,7 @@
     <Content Include="Scripts\bootstrap.min.js.map">
       <DependentUpon>bootstrap.min.js</DependentUpon>
     </Content>
+    <Content Include="Areas\VenueAdministrator\Views\VenueGroups\Create.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Icon.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -341,7 +342,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\VenueAdministrator\Views\VenueGroups\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

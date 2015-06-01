@@ -1,4 +1,6 @@
 ﻿using PompeiiSquare.Data.UnitOfWork;
+using PompeiiSquare.Models;
+using PompeiiSquare.Server.Areas.VenueAdministrator.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +17,18 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
         {
         }
 
-        [HttpPost, ActionName("Create")]
-        public ActionResult Create(string name)
+        [HttpGet]
+        public ActionResult Create()
         {
-            return new HttpStatusCodeResult(HttpStatusCode.OK);
+            return this.PartialView();
+        }
+
+        [HttpPost, ActionName("Create")]
+        public ActionResult Create(VenueGroupBindingModel model)
+        {
+            this.Data.VenueGroups.Add(new VenueGroup() { Name = model.Name });
+            this.Data.SaveChanges();
+            return new HttpStatusCodeResult(HttpStatusCode.Created);
         }
     }
 }

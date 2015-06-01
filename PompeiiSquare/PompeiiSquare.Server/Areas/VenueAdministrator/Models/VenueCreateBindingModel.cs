@@ -25,7 +25,7 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Models
 
         public DbGeography Location { get; set; }
 
-        [Range(0, 4)]
+        [Range(0, 4), Display(Name = "Price tier")]
         public int PriceTier { get; set; }
 
         public IList<int> Groups { get; set; }

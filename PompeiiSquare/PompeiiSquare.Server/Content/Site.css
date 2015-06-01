@@ -51,3 +51,8 @@ a.btn.btn-success.btn-lg {
 #add-new-group {
     margin-top: 8px;
 }
+
+.modal-content {
+    width: 600px !important;
+    margin: 30px auto !important;
+} 
