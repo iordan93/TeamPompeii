@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<PompeiiSquare.Models.Venue>
 
+@Html.ActionLink("Creat new venue", "Create", "Venues", new { Area = "VenueAdministrator" }, new { @class = "btn btn-primary create-venue" })
+
 @foreach (var item in Model)
 {
     <div class="panel panel-primary">
