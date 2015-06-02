@@ -35,7 +35,7 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
         }
 
         [HttpGet]
-        public ActionResult ViewDetails(string id)
+        public ActionResult ViewDetails(int id)
         {
             // TODO: return VenueShowModel
             var venueFromDb = this.Data.Venues.Find(id);

@@ -1,7 +1,49 @@
-﻿
+﻿@model PompeiiSquare.Models.Venue
 @{
-    ViewBag.Title = "ViewDetails";
+    ViewBag.Title = "View Details";
 }
 
-<h2>ViewDetails</h2>
+<h2>@ViewBag.Title</h2>
 
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">@Html.DisplayFor(modelItem => Model.Name)</h3>
+    </div>
+    <div class="panel-body">
+        <div class="well">
+            <span class="venue-info">@Html.DisplayNameFor(model => model.Address): @Html.DisplayFor(modelItem => Model.Address)</span>
+            <span class="venue-info">@Html.DisplayNameFor(model => model.Contact): @Html.DisplayFor(modelItem => Model.Contact)</span>
+            <span class="venue-info">@Html.DisplayNameFor(model => model.PriceTier): @Html.DisplayFor(modelItem => Model.PriceTier)</span>
+            <span class="venue-info">@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(modelItem => Model.Description)</span>
+            <span class="venue-info">@Html.DisplayNameFor(model => model.CreatedAt): @Html.DisplayFor(modelItem => Model.CreatedAt)</span>
+            <span class="venue-info">@Html.DisplayNameFor(model => model.Likes): @Html.DisplayFor(modelItem => Model.Likes)</span>
+            <span class="venue-info">@Html.DisplayNameFor(model => model.OpenHours):
+                @foreach (var openHour in Model.OpenHours)
+                {
+                    <span>@openHour.Weekday : @openHour.Hours |</span>
+                }
+            </span>
+            <span class="venue-info">@Html.DisplayNameFor(model => model.Groups):
+                @foreach (var group in Model.Groups)
+                {
+                    <span class="label label-primary">@group.Name</span>
+                }
+            </span>
+            <span class="venue-info">@Html.DisplayNameFor(model => model.Tags):
+                @foreach (var tag in Model.Tags)
+                {
+                    <span class="label label-primary">@tag.Name</span>
+                }
+            </span>
+            <div class="row delete-edit-venue">
+                @* TODO: Check is user owner !!! *@
+                @Html.ActionLink("Delete", "Delete", "Venues", new { Area = "VenueAdministrator", Id = @Html.DisplayFor(modelItem => Model.Id) }, new { @class = "btn btn-danger pull-right" })
+                @Html.ActionLink("Edit", "Edit", "Venues", new { Area = "VenueAdministrator", Id = @Html.DisplayFor(modelItem => Model.Id) }, new { @class = "btn btn-primary pull-right" })
+            </div>
+            <div>
+                <a href="@Url.Action("Like", new { id = Model.Id })" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+                <a href="@Url.Action("Dislike", new { id = Model.Id })" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span></a>
+            </div>
+        </div>
+    </div>
+</div>

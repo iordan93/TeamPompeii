@@ -97,3 +97,11 @@ a.modal-link.btn.btn-success {
 #create-group-error{
     color: red;
 }
+
+a.venue-title {
+    color: white;
+}
+
+a.venue-title:hover {
+    text-decoration: none;
+}
