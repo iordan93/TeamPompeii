@@ -26,6 +26,15 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
         }
 
         [HttpGet]
+        public ActionResult SearchByGroup(string id)
+        {
+            // TODO: return VenueShowModels
+            var groupFromDb = this.Data.VenueGroups.All().Where(g => g.Name == id);
+            var venuesFromDb = Data.Venues.All().Where(v => v.Groups.Any(g => g.Name == id)).ToList();
+            return this.View(venuesFromDb);
+        }
+
+        [HttpGet]
         public ActionResult Create()
         {
             var model = new VenueCreateBindingModel();
