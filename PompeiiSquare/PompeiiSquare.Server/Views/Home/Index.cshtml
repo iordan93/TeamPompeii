@@ -11,10 +11,10 @@
         <a href="#" class="btn btn-success btn-lg">Search</a>
     </div>
     <div class="text-center">
-        <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-glass" aria-hidden="true"></span> Drinks</a>
-        <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> Food</a>
-        <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> Fun</a>
-        <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span> Nightlife</a>
-        <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> Shopping</a>
+        <a href="@Url.Action("SearchByGroup", "Venues", new { id = "Drinks", Area = "VenueAdministrator" })" class="btn btn-default"><span class="glyphicon glyphicon-glass" aria-hidden="true"></span> Drinks</a>
+        <a href="@Url.Action("SearchByGroup", "Venues", new { id = "Food", Area = "VenueAdministrator" })" class="btn btn-default"><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> Food</a>
+        <a href="@Url.Action("SearchByGroup", "Venues", new { id = "Fun", Area = "VenueAdministrator" })" class="btn btn-default"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> Fun</a>
+        <a href="@Url.Action("SearchByGroup", "Venues", new { id = "NightLife", Area = "VenueAdministrator" })" class="btn btn-default"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span> Nightlife</a>
+        <a href="@Url.Action("SearchByGroup", "Venues", new { id = "Shopping", Area = "VenueAdministrator" })" class="btn btn-default"><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> Shopping</a>
     </div>
 </div>
