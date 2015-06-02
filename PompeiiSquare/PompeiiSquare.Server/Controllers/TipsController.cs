@@ -4,6 +4,9 @@
     using PompeiiSquare.Server.Models;
     using System.Net;
     using System.Web.Mvc;
+    using System.Linq;
+    using PompeiiSquare.Models;
+    using System;
 
     public class TipsController : BaseController
     {
@@ -23,12 +26,22 @@
         {
             if (ModelState.IsValid)
             {
-                // Save Tip to DB
-                return Content("Valid");
-                //return new HttpStatusCodeResult(HttpStatusCode.Created);
+                //var venueFromDb = this.Data.Venues.All().Where(v => v.Id == model.venueId);
+                var tip = new Tip()
+                {
+                    Text = model.Content,
+                    Likes = 0,
+                    CreatedAt = DateTime.Now,
+                    User = this.UserProfile,
+                    VenueId = model.venueId
+                };
+                this.Data.Tips.Add(tip);
+                this.Data.SaveChanges();
+
+                return this.RedirectToAction("ViewDetails", "Venues", routeValues: new { id = model.venueId , area = "VenueAdministrator"});
             }
 
-            return Content("Invalid"); // TODO: Redirect
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Invalid model");
         }
     }
 }
