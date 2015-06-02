@@ -1,4 +1,5 @@
-﻿@model PompeiiSquare.Models.Venue
+﻿@using PompeiiSquare.Server.Models
+@model PompeiiSquare.Models.Venue
 @{
     ViewBag.Title = "View Details";
 }
@@ -26,7 +27,7 @@
             <span class="venue-info">@Html.DisplayNameFor(model => model.Groups):
                 @foreach (var group in Model.Groups)
                 {
-                    <span class="label label-primary">@group.Name</span>
+                    <span class="label label-primary">@group.Name</span> 
                 }
             </span>
             <span class="venue-info">@Html.DisplayNameFor(model => model.Tags):
@@ -47,3 +48,4 @@
         </div>
     </div>
 </div>
+@Html.Partial("~/Views/Tips/Create.cshtml", new PompeiiSquare.Server.Models.TipBindingModel())
