@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
@@ -133,8 +132,7 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
         }
 
         // POST: Venues/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
             Venue venue = this.Data.Venues.Find(id);

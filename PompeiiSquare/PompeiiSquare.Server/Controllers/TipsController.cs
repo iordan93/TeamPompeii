@@ -4,7 +4,6 @@
     using PompeiiSquare.Server.Models;
     using System.Net;
     using System.Web.Mvc;
-    using System.Linq;
     using PompeiiSquare.Models;
     using System;
 
@@ -26,7 +25,6 @@
         {
             if (ModelState.IsValid)
             {
-                //var venueFromDb = this.Data.Venues.All().Where(v => v.Id == model.venueId);
                 var tip = new Tip()
                 {
                     Text = model.Content,
