@@ -18,34 +18,37 @@
             <span class="venue-info">@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(modelItem => Model.Description)</span>
             <span class="venue-info">@Html.DisplayNameFor(model => model.CreatedAt): @Html.DisplayFor(modelItem => Model.CreatedAt)</span>
             <span class="venue-info">@Html.DisplayNameFor(model => model.Likes): @Html.DisplayFor(modelItem => Model.Likes)</span>
-            <span class="venue-info">@Html.DisplayNameFor(model => model.OpenHours):
-                @foreach (var openHour in Model.OpenHours)
-                {
-                    <span>@openHour.Weekday : @openHour.Hours |</span>
-                }
-            </span>
-            <span class="venue-info">@Html.DisplayNameFor(model => model.Groups):
-                @foreach (var group in Model.Groups)
-                {
-                    <span class="label label-primary">@group.Name</span> 
-                }
-            </span>
-            <span class="venue-info">@Html.DisplayNameFor(model => model.Tags):
-                @foreach (var tag in Model.Tags)
-                {
-                    <span class="label label-primary">@tag.Name</span>
-                }
-            </span>
-            <div class="row delete-edit-venue">
-                @* TODO: Check is user owner !!! *@
-                @Html.ActionLink("Delete", "Delete", "Venues", new { Area = "VenueAdministrator", Id = @Html.DisplayFor(modelItem => Model.Id) }, new { @class = "btn btn-danger pull-right" })
-                @Html.ActionLink("Edit", "Edit", "Venues", new { Area = "VenueAdministrator", Id = @Html.DisplayFor(modelItem => Model.Id) }, new { @class = "btn btn-primary pull-right" })
-            </div>
-            <div>
-                <a href="@Url.Action("Like", new { id = Model.Id })" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span></a>
-                <a href="@Url.Action("Dislike", new { id = Model.Id })" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span></a>
-            </div>
-        </div>
-    </div>
+            <span class="venue-info">
+                @Html.DisplayNameFor(model => model.OpenHours):
+            @foreach (var openHour in Model.OpenHours)
+            {
+                <span>@openHour.Weekday : @openHour.Hours |</span>
+            }
+        </span>
+        <span class="venue-info">
+            @Html.DisplayNameFor(model => model.Groups):
+        @foreach (var group in Model.Groups)
+        {
+            <span class="label label-primary">@group.Name</span>
+        }
+    </span>
+    <span class="venue-info">
+        @Html.DisplayNameFor(model => model.Tags):
+    @foreach (var tag in Model.Tags)
+    {
+        <span class="label label-primary">@tag.Name</span>
+    }
+</span>
+<div class="row delete-edit-venue">
+    @* TODO: Check is user owner !!! *@
+    @Html.ActionLink("Delete", "Delete", "Venues", new { Area = "VenueAdministrator", Id = @Html.DisplayFor(modelItem => Model.Id) }, new { @class = "btn btn-danger pull-right" })
+    @Html.ActionLink("Edit", "Edit", "Venues", new { Area = "VenueAdministrator", Id = @Html.DisplayFor(modelItem => Model.Id) }, new { @class = "btn btn-primary pull-right" })
 </div>
-@Html.Partial("~/Views/Tips/Create.cshtml", new PompeiiSquare.Server.Models.TipBindingModel())
+<div>
+    <a href="@Url.Action("Like", new { id = Model.Id })" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+    <a href="@Url.Action("Dislike", new { id = Model.Id })" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span></a>
+</div>
+</div>
+</div>
+</div>
+@Html.Partial("~/Views/Tips/Create.cshtml", new PompeiiSquare.Server.Models.TipBindingModel() { id = Model.Id })

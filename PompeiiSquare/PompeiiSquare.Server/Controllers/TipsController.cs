@@ -24,10 +24,11 @@
             if (ModelState.IsValid)
             {
                 // Save Tip to DB
-                return new HttpStatusCodeResult(HttpStatusCode.Created);
+                return Content("Valid");
+                //return new HttpStatusCodeResult(HttpStatusCode.Created);
             }
 
-            return Content(""); // TODO: Redirect
+            return Content("Invalid"); // TODO: Redirect
         }
     }
 }
