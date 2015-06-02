@@ -40,6 +40,10 @@
                     @Html.ActionLink("Delete", "Delete", "Venues", new { Area = "VenueAdministrator", Id = @Html.DisplayFor(modelItem => item.Id) }, new { @class = "btn btn-danger pull-right" })
                     @Html.ActionLink("Edit", "Edit", "Venues", new { Area = "VenueAdministrator", Id = @Html.DisplayFor(modelItem => item.Id) }, new { @class = "btn btn-primary pull-right" })
                 </div>
+                <div>
+                    <a href="@Url.Action("Like", new { id = item.Id })" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+                    <a href="@Url.Action("Dislike", new { id = item.Id })" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span></a>
+                </div>
             </div>
         </div>
     </div>

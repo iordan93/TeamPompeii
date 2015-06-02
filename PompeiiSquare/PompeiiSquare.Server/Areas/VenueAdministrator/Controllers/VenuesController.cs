@@ -126,6 +126,22 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Like(int id)
+        {
+            Venue venue = this.Data.Venues.Find(id);
+            venue.Likes++;
+            this.Data.SaveChanges();
+            return this.RedirectToAction("Index");
+        }
+
+        public ActionResult Dislike(int id)
+        {
+            Venue venue = this.Data.Venues.Find(id);
+            venue.Likes--;
+            this.Data.SaveChanges();
+            return this.RedirectToAction("Index");
+        }
+
         [ActionName("AddNewOpenHours")]
         public ActionResult AddNewOpenHours()
         {
