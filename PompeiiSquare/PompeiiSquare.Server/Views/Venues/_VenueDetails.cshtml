@@ -1,0 +1,61 @@
+﻿@model PompeiiSquare.Models.Venue
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        @*<h3 class="panel-title">@Html.DisplayFor(modelItem => item.Name)</h3>*@
+        <a href="@Url.Action("ViewDetails", "Venues", new { id = @Html.DisplayFor(m => m.Id)})" class="venue-title">
+            <h3 class="panel-title">@Html.DisplayFor(m => m.Name)</h3>
+        </a>
+    </div>
+    <div class="panel-body">
+        <div class="well">
+            <span class="venue-info">@Html.DisplayNameFor(model => model.Address): @Html.DisplayFor(m => m.Address)</span>
+            <span class="venue-info">@Html.DisplayNameFor(model => model.Contact): @Html.DisplayFor(m => m.Contact)</span>
+            <div class="venue-info">
+                @{
+                    var priceTierString = Model.PriceTier == 0 ? "free" : new string('$', Model.PriceTier);
+                }
+                @Html.DisplayNameFor(m => m.PriceTier): @priceTierString
+                <span class="venue-info">@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(m => m.Description)</span>
+                <span class="venue-info">@Html.DisplayNameFor(model => model.CreatedAt): @Html.DisplayFor(m => m.CreatedAt)</span>
+                <span class="venue-info">@Html.DisplayNameFor(model => model.Likes): @Html.DisplayFor(m => m.Likes)</span>
+                <span class="venue-info">
+                    @Html.DisplayNameFor(model => model.OpenHours):
+                    @foreach (var openHour in Model.OpenHours)
+                    {
+                        <span>@openHour.Weekday : @openHour.Hours |</span>
+                    }
+                </span>
+                <span class="venue-info">
+                    @Html.DisplayNameFor(model => model.Groups):
+                    @if (!Model.Groups.Any())
+                    {
+                        <span>no groups</span>
+                    }
+                    @foreach (var group in Model.Groups)
+                    {
+                        <span class="label label-primary venue-groups">
+                            <a href="@Url.Action("SearchByGroup", new { id = group.Name })" class="venue-group">
+                                @group.Name
+                            </a>
+                        </span>
+                    }
+                </span>
+                <span class="venue-info">
+                    @Html.DisplayNameFor(model => model.Tags):
+                    @if (!Model.Tags.Any())
+                    {
+                        <span>no tags</span>
+                    }
+                    @foreach (var tag in Model.Tags)
+                    {
+                        <span class="label label-primary">@tag.Name</span>
+                    }
+                </span>
+                <div class="like-dislike-box">
+                    <a href="@Url.Action("Like", new { id = Model.Id })" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+                    <a href="@Url.Action("Dislike", new { id = Model.Id })" class="btn btn-danger"><span class="glyphicon glyphicon-thumbs-down"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

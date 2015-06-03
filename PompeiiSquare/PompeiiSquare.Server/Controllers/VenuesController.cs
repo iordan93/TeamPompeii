@@ -1,4 +1,5 @@
 ﻿using PompeiiSquare.Data.UnitOfWork;
+using PompeiiSquare.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,22 @@ namespace PompeiiSquare.Server.Controllers
         {
             var venueFromDb = this.Data.Venues.Find(id);
             return this.View(venueFromDb);
+        }
+
+        public ActionResult Like(int id)
+        {
+            Venue venue = this.Data.Venues.Find(id);
+            venue.Likes++;
+            this.Data.SaveChanges();
+            return this.RedirectToAction("Index");
+        }
+
+        public ActionResult Dislike(int id)
+        {
+            Venue venue = this.Data.Venues.Find(id);
+            venue.Likes--;
+            this.Data.SaveChanges();
+            return this.RedirectToAction("Index");
         }
     }
 }

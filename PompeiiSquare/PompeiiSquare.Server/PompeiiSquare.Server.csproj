@@ -288,7 +288,6 @@
     <Content Include="Areas\VenueAdministrator\Views\Venues\Delete.cshtml" />
     <Content Include="Areas\VenueAdministrator\Views\Venues\Edit.cshtml" />
     <Content Include="Areas\VenueAdministrator\Views\Venues\SearchByGroup.cshtml" />
-    <Content Include="Areas\VenueAdministrator\Views\Venues\ViewDetails.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Icon.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -351,6 +350,7 @@
     <Content Include="Views\Tips\Create.cshtml" />
     <Content Include="Views\Venues\ViewDetails.cshtml" />
     <Content Include="Views\Venues\Index.cshtml" />
+    <Content Include="Views\Venues\_VenueDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />
