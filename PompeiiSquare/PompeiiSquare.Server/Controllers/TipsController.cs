@@ -41,5 +41,21 @@
 
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Invalid model");
         }
+
+        public ActionResult Like(int id)
+        {
+            var tip = this.Data.Tips.Find(id);
+            tip.Likes++;
+            this.Data.SaveChanges();
+            return this.PartialView("_TipDetails", tip);
+        }
+
+        public ActionResult Dislike(int id)
+        {
+            var tip = this.Data.Tips.Find(id);
+            tip.Likes--;
+            this.Data.SaveChanges();
+            return this.PartialView("_TipDetails", tip);
+        }
     }
 }

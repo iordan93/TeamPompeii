@@ -351,6 +351,7 @@
     <Content Include="Views\Venues\ViewDetails.cshtml" />
     <Content Include="Views\Venues\Index.cshtml" />
     <Content Include="Views\Venues\_VenueDetails.cshtml" />
+    <Content Include="Views\Tips\_TipDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />

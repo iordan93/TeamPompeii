@@ -1,0 +1,24 @@
+﻿@using PompeiiSquare.Server.Utilities;
+@model PompeiiSquare.Models.Tip
+<div class="well" id="tip-details-@Model.Id">
+    <div class="word-wrap">@Model.Text</div>
+    <div>
+        <span class="venue-info">Date created: @Model.CreatedAt.ToString("dd.MM.yyyy hh:mm")</span>
+        <span class="venue-info">Likes: @Model.Likes</span>
+        <span>
+            <span class="glyphicon glyphicon-user"></span> @Model.User.UserName
+        </span>
+    </div>
+    @if (User.Identity.Name == Model.User.UserName)
+    {
+        <div class="row delete-edit-tip">
+            @Html.ActionLink("Delete", "Delete", "Tip", new { id = Model.Id, Area = "" }, new { @class = "btn btn-danger pull-right" })
+            @Html.ActionLink("Edit", "Edit", "Tip", new { id = Model.Id, Area = "" }, new { @class = "btn btn-primary pull-right" })
+        </div>
+    }
+        <div class="like-dislike-box">
+            @Ajax.RawActionLink("<span class=\"glyphicon glyphicon-thumbs-up\">", "Like", "Tips", new { id = Model.Id }, new AjaxOptions() { InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "tip-details-" + Model.Id }, new { @class = "btn btn-success" })
+            @Ajax.RawActionLink("<span class=\"glyphicon glyphicon-thumbs-down\">", "Dislike", "Tips", new { id = Model.Id }, new AjaxOptions() { InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "tip-details-" + Model.Id }, new { @class = "btn btn-danger" })
+        </div>
+</div>
+
