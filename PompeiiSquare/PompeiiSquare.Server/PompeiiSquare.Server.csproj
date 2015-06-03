@@ -228,6 +228,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\ViewEnginesConfiguration.cs" />
+    <Compile Include="Areas\Administrator\AdministratorAreaRegistration.cs" />
+    <Compile Include="Areas\Administrator\Controllers\BaseAdministratorController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Administrator\Models\UserBindingModel.cs" />
     <Compile Include="Areas\VenueAdministrator\Controllers\BaseVenueAdministratorController.cs" />
     <Compile Include="Areas\VenueAdministrator\Controllers\VenueGroupsController.cs" />
     <Compile Include="Areas\VenueAdministrator\Controllers\VenuesController.cs" />
@@ -288,6 +292,10 @@
     <Content Include="Areas\VenueAdministrator\Views\Venues\Edit.cshtml" />
     <Content Include="Areas\VenueAdministrator\Views\Venues\SearchByGroup.cshtml" />
     <Content Include="Areas\VenueAdministrator\Views\Venues\ViewDetails.cshtml" />
+    <Content Include="Areas\Administrator\Views\web.config" />
+    <Content Include="Areas\Administrator\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Administrator\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Administrator\Views\Users\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Icon.png" />
     <Content Include="Scripts\bootstrap.js" />
