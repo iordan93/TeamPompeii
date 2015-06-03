@@ -1,5 +1,6 @@
-﻿@model PompeiiSquare.Models.Venue
-<div class="panel panel-primary">
+﻿@using PompeiiSquare.Server.Utilities;
+@model PompeiiSquare.Models.Venue
+<div class="panel panel-primary" id="venue-details-@Model.Id">
     <div class="panel-heading">
         @*<h3 class="panel-title">@Html.DisplayFor(modelItem => item.Name)</h3>*@
         <a href="@Url.Action("ViewDetails", "Venues", new { id = @Html.DisplayFor(m => m.Id)})" class="venue-title">
@@ -52,8 +53,8 @@
                     }
                 </span>
                 <div class="like-dislike-box">
-                    <a href="@Url.Action("Like", new { id = Model.Id })" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span></a>
-                    <a href="@Url.Action("Dislike", new { id = Model.Id })" class="btn btn-danger"><span class="glyphicon glyphicon-thumbs-down"></span></a>
+                    @Ajax.RawActionLink("<span class=\"glyphicon glyphicon-thumbs-up\">", "Like", "Venues", new { id = Model.Id }, new AjaxOptions() { InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "venue-details-" + Model.Id }, new { @class = "btn btn-success" })
+                    @Ajax.RawActionLink("<span class=\"glyphicon glyphicon-thumbs-down\">", "Dislike", "Venues", new { id = Model.Id }, new AjaxOptions() { InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "venue-details-" + Model.Id }, new { @class = "btn btn-danger" })
                 </div>
             </div>
         </div>

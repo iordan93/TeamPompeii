@@ -41,7 +41,7 @@ namespace PompeiiSquare.Server.Controllers
             Venue venue = this.Data.Venues.Find(id);
             venue.Likes++;
             this.Data.SaveChanges();
-            return this.RedirectToAction("Index");
+            return this.PartialView("_VenueDetails", venue);
         }
 
         public ActionResult Dislike(int id)
@@ -49,7 +49,7 @@ namespace PompeiiSquare.Server.Controllers
             Venue venue = this.Data.Venues.Find(id);
             venue.Likes--;
             this.Data.SaveChanges();
-            return this.RedirectToAction("Index");
+            return this.PartialView("_VenueDetails", venue);
         }
     }
 }
