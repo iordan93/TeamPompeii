@@ -17,7 +17,7 @@ namespace PompeiiSquare.Server.Areas.Administrator.Controllers
         // GET: Administrator/Users
         public ActionResult Index()
         {
-            // TODO: return VenueShowModels
+            // TODO: return UserShowModels
             var usersFromDb = Data.Users.All().ToList();
             return this.View(usersFromDb);
         }
