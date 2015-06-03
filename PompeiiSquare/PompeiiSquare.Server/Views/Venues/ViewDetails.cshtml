@@ -44,11 +44,7 @@
                     <span class="label label-primary">@tag.Name</span>
                 }
             </span>
-            <div class="row delete-edit-venue">
-                @Html.ActionLink("Delete", "Delete", "Venues", new { Area = "VenueAdministrator", Id = @Html.DisplayFor(modelItem => Model.Id) }, new { @class = "btn btn-danger pull-right" })
-                @Html.ActionLink("Edit", "Edit", "Venues", new { Area = "VenueAdministrator", Id = @Html.DisplayFor(modelItem => Model.Id) }, new { @class = "btn btn-primary pull-right" })
-            </div>
-            <div>
+            <div class="like-dislike-box">
                 <a href="@Url.Action("Like", new { id = Model.Id })" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span></a>
                 <a href="@Url.Action("Dislike", new { id = Model.Id })" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span></a>
             </div>
