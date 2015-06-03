@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
@@ -20,9 +19,26 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
 
         public ActionResult Index()
         {
-            // TODO: Return list
-            var venues = Data.Venues.All().ToList();
-            return this.View(venues);
+            // TODO: return VenueShowModels
+            var venuesFromDb = Data.Venues.All().ToList();
+            return this.View(venuesFromDb);
+        }
+
+        [HttpGet]
+        public ActionResult SearchByGroup(string id)
+        {
+            // TODO: return VenueShowModels
+            var groupFromDb = this.Data.VenueGroups.All().Where(g => g.Name == id);
+            var venuesFromDb = Data.Venues.All().Where(v => v.Groups.Any(g => g.Name == id)).ToList();
+            return this.View(venuesFromDb);
+        }
+
+        [HttpGet]
+        public ActionResult ViewDetails(int id)
+        {
+            // TODO: return VenueShowModel
+            var venueFromDb = this.Data.Venues.Find(id);
+            return this.View(venueFromDb);
         }
 
         [HttpGet]
@@ -116,14 +132,29 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
         }
 
         // POST: Venues/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
             Venue venue = this.Data.Venues.Find(id);
             this.Data.Venues.Remove(venue);
             this.Data.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Like(int id)
+        {
+            Venue venue = this.Data.Venues.Find(id);
+            venue.Likes++;
+            this.Data.SaveChanges();
+            return this.RedirectToAction("Index");
+        }
+
+        public ActionResult Dislike(int id)
+        {
+            Venue venue = this.Data.Venues.Find(id);
+            venue.Likes--;
+            this.Data.SaveChanges();
+            return this.RedirectToAction("Index");
         }
 
         [ActionName("AddNewOpenHours")]

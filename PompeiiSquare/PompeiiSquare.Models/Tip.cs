@@ -10,13 +10,12 @@ namespace PompeiiSquare.Models
 {
     public class Tip
     {
-        [Key, Column(Order = 0)]
+        public int Id { get; set; }
+
         public int UserId { get; set; }
 
-        [Key, Column(Order = 1)]
         public int VenueId { get; set; }
 
-        [Key, Column(Order = 2)]
         public DateTime CreatedAt { get; set; }
 
         public virtual User User { get; set; }

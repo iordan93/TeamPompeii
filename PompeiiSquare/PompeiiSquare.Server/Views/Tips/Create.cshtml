@@ -1,0 +1,22 @@
+﻿@model PompeiiSquare.Server.Models.TipBindingModel
+
+@using (@Html.BeginForm("Create", "Tips", new { area = "" }, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", id = "create-tip-form"}))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label for="tip-content" class="control-label col-md-2">Create new comment</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control", id = "tip-content", rows = 4 } })
+            @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+            @*<span>VenueId: </span>@Model.venueId*@
+            <input type="hidden" name="venueId" value="@Model.venueId" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-primary pull-right" value="Create"/>
+        </div>
+    </div>
+}

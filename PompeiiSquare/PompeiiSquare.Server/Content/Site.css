@@ -69,14 +69,47 @@ div.panel-primary {
     margin: 10px 0;
 }
 
-div.panel-body > div.well {
+div.panel-body.venue-details-container > div.well {
     margin-bottom: 0;
 }
 
-.delete-edit-venue{
+.delete-edit-venue, .delete-edit-tip {
     margin-right: 0;
 }
 
-.delete-edit-venue a.pull-right{
+.delete-edit-venue a.pull-right, .delete-edit-tip a.pull-right{
     margin: 0 5px;
+}
+
+.modal-content {
+    width: 600px !important;
+    margin: 30px auto !important;
+}
+
+a.modal-link.btn.btn-success {
+    margin-top: 10px;
+}
+
+.create-venue {
+    margin-top: 10px;
+}
+
+#create-group-error{
+    color: red;
+}
+
+a.venue-title {
+    color: white;
+}
+
+a.venue-title:hover {
+    text-decoration: none;
+}
+
+#tip-content {
+    max-width: 100%;
+}
+
+.word-wrap {
+    word-wrap: break-word;
 }

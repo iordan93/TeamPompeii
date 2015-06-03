@@ -33,6 +33,7 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Models
         [Display(Name = "Open hours")]
         public IList<OpenHoursBindingModel> OpenHours { get; set; }
 
+        [DataType(DataType.MultilineText)]
         [Required, MinLength(10, ErrorMessage = "The description must be at least 10 symbols long.")]
         public string Description { get; set; }
 
