@@ -69,7 +69,7 @@ div.panel-primary {
     margin: 10px 0;
 }
 
-div.panel-body > div.well {
+div.panel-body.venue-details-container > div.well {
     margin-bottom: 0;
 }
 
