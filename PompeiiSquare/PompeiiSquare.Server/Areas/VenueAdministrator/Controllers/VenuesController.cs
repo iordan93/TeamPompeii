@@ -55,13 +55,16 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
             var venue = Mapper.Map<Venue>(model);
             var openHours = venue.OpenHours;
             venue.OpenHours = null;
-            var tagNames = model.Tags
-                .Split(new[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries);
-            var tags = MapTags(tagNames);
+            if (model.Tags != null)
+            {
+                var tagNames = model.Tags
+                    .Split(new[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries);
+                var tags = MapTags(tagNames);
+                venue.Tags = tags;
+            }
 
             var groups = MapGroups(model.Groups);
 
-            venue.Tags = tags;
             venue.Groups = groups;
             venue.CreatedAt = DateTime.Now;
             this.Data.Venues.Add(venue);

@@ -16,7 +16,6 @@
             <div class="well">
                 <span class="venue-info">@Html.DisplayNameFor(model => model.Address): @Html.DisplayFor(modelItem => item.Address)</span>
                 <span class="venue-info">@Html.DisplayNameFor(model => model.Contact): @Html.DisplayFor(modelItem => item.Contact)</span>
-                @*<span class="venue-info">@Html.DisplayNameFor(model => model.Location): (@Html.DisplayFor(modelItem => item.Location.Longitude), @Html.DisplayFor(modelItem => item.Location.Latitude))</span>*@
                 <div class="venue-info">
                     @{
     var priceTierString = item.PriceTier == 0 ? "free" : new string('$', item.PriceTier);

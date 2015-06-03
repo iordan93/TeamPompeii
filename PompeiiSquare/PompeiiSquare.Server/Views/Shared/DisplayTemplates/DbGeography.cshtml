@@ -1,10 +1,13 @@
-﻿@model System.Data.Spatial.DbGeography
+﻿@using PompeiiSquare.Server.Utilities;
+@model System.Data.Entity.Spatial.DbGeography
 
 @if (Model != null)
 {
-    @Html.TextBox("", Model.Latitude + ", " + Model.Longitude, new { @class = "editor-for-dbgeography" })
+    @*<script>
+        $(function () {
+            debugger;
+            maps.markerToSet = new google.maps.LatLng(@Model.Latitude, @Model.Longitude);
+        });
+    </script>*@
 }
-else
-{
-    @Html.TextBox("", "", new { @class = "editor-for-dbgeography" })
-}
+<div id="map_canvas" style="width: 400px; height: 400px"></div>
