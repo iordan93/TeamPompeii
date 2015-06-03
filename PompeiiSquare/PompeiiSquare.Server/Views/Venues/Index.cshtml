@@ -18,7 +18,7 @@
                 <span class="venue-info">@Html.DisplayNameFor(model => model.Contact): @Html.DisplayFor(modelItem => item.Contact)</span>
                 <div class="venue-info">
                     @{
-    var priceTierString = item.PriceTier == 0 ? "free" : new string('$', item.PriceTier);
+                        var priceTierString = item.PriceTier == 0 ? "free" : new string('$', item.PriceTier);
                     }
                     @Html.DisplayNameFor(model => model.PriceTier): @priceTierString
                     <span class="venue-info">@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(modelItem => item.Description)</span>

@@ -18,8 +18,12 @@
             <div class="well">
                 <span class="venue-info">@Html.DisplayNameFor(model => model.Address): @Html.DisplayFor(modelItem => item.Address)</span>
                 <span class="venue-info">@Html.DisplayNameFor(model => model.Contact): @Html.DisplayFor(modelItem => item.Contact)</span>    
-                @*<span class="venue-info">@Html.DisplayNameFor(model => model.Location): (@Html.DisplayFor(modelItem => item.Location.Longitude), @Html.DisplayFor(modelItem => item.Location.Latitude))</span>*@
-                <span class="venue-info">@Html.DisplayNameFor(model => model.PriceTier): @Html.DisplayFor(modelItem => item.PriceTier)</span>
+                <span class="venue-info">
+                    @{
+                        var priceTierString = item.PriceTier == 0 ? "free" : new string('$', item.PriceTier);
+                    }
+                    @Html.DisplayNameFor(model => model.PriceTier): @priceTierString
+                </span>
                 <span class="venue-info">@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(modelItem => item.Description)</span>
                 <span class="venue-info">@Html.DisplayNameFor(model => model.CreatedAt): @Html.DisplayFor(modelItem => item.CreatedAt)</span>
                 <span class="venue-info">@Html.DisplayNameFor(model => model.Likes): @Html.DisplayFor(modelItem => item.Likes)</span>
@@ -35,7 +39,12 @@
                         <span class="label label-primary">@group.Name</span>
                     }
                 </span>
-                <span class="venue-info">@Html.DisplayNameFor(model => model.Tags):
+                <span class="venue-info">
+                    @Html.DisplayNameFor(model => model.Tags):
+                    @if (!item.Tags.Any())
+                    {
+                        <span>no tags</span>
+                    }
                     @foreach (var tag in item.Tags)
                     {
                         <span class="label label-primary">@tag.Name</span>

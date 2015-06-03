@@ -77,13 +77,10 @@
                }, new { @class = "btn btn-primary pull-right" })
                 </div>
                 <div class="like-dislike-box">
-                    @*<a href="@Url.Action("Like", new { id = Model.Id })" class="btn btn-default">
-                            <span class="glyphicon glyphicon-thumbs-up"></span>
-                        </a>*@
-                    <a href="@Url.Action("Like", "Tips", new { @*id = tip.Id,*@ Area = "" })" class="btn btn-default">
+                    <a href="@Url.Action("Like", "Tips", new { id = tip.Id, Area = "" })" class="btn btn-default">
                         <span class="glyphicon glyphicon-thumbs-up"></span>
                     </a>
-                    <a href="@Url.Action("Dislike", "Tips", new { @*id = tip.Id,*@ Area = "" })" class="btn btn-default">
+                    <a href="@Url.Action("Dislike", "Tips", new { id = tip.Id, Area = "" })" class="btn btn-default">
                         <span class="glyphicon glyphicon-thumbs-down"></span>
                     </a>
                 </div>
