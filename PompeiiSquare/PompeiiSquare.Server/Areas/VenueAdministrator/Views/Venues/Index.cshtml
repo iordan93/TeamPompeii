@@ -5,24 +5,29 @@
 
 @Html.ActionLink("Create new venue", "Create", "Venues", new { Area = "VenueAdministrator" }, new { @class = "btn btn-success btn-lg create-venue" })
 
-@foreach (var item in Model)
-{
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            @*<h3 class="panel-title">@Html.DisplayFor(modelItem => item.Name)</h3>*@
-            <a href="@Url.Action("ViewDetails", "Venues", new { id = @Html.DisplayFor(modelItem => item.Id), Area = "VenueAdministrator" })" class="venue-title">
-                <h3 class="panel-title">@Html.DisplayFor(modelItem => item.Name)</h3>
-            </a>
-        </div>
-
-        <div class="row delete-edit-venue">
-            @* TODO: Check is user owner !!! *@
-            @Html.ActionLink("Delete", "Delete", "Venues", new { Area = "VenueAdministrator", Id = @Html.DisplayFor(modelItem => item.Id) }, new { @class = "btn btn-danger pull-right" })
-            @Html.ActionLink("Edit", "Edit", "Venues", new { Area = "VenueAdministrator", Id = @Html.DisplayFor(modelItem => item.Id) }, new { @class = "btn btn-primary pull-right" })
-        </div>
-        <div>
-            <a href="@Url.Action("Like", new { id = item.Id })" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span></a>
-            <a href="@Url.Action("Dislike", new { id = item.Id })" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span></a>
-        </div>
-    </div>
-}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Contact</th>
+            <th>PriceTier</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            <td>@item.Contact</td>
+            <td>@item.PriceTier</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Venues", new { Area = "VenueAdministrator", Id = @Html.DisplayFor(modelItem => item.Id) }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Delete", "Delete", "Venues", new { Area = "VenueAdministrator", Id = @Html.DisplayFor(modelItem => item.Id) }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+</table>
