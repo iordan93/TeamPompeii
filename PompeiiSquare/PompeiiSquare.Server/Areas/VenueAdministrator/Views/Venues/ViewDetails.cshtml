@@ -37,7 +37,6 @@
                 }
             </span>
             <div class="row delete-edit-venue">
-                @* TODO: Check is user owner !!! *@
                 @Html.ActionLink("Delete", "Delete", "Venues", new { Area = "VenueAdministrator", Id = @Html.DisplayFor(modelItem => Model.Id) }, new { @class = "btn btn-danger pull-right" })
                 @Html.ActionLink("Edit", "Edit", "Venues", new { Area = "VenueAdministrator", Id = @Html.DisplayFor(modelItem => Model.Id) }, new { @class = "btn btn-primary pull-right" })
             </div>
@@ -58,8 +57,29 @@
     <div class="panel-body">
         @foreach (var tip in Model.Tips)
         {
-            <div class="well">@tip.Text</div>
-            @*<span class="label label-primary">@tip.Text</span>*@
+            <div class="well">
+                <div class="word-wrap">@tip.Text</div>
+                <div>
+                    <span>
+                        <span class="glyphicon glyphicon-user"></span> @tip.User.UserName
+                    </span>
+                </div>
+                <div class="row delete-edit-tip">
+                    @Html.ActionLink("Delete", "Delete", "Tip", new { @*id = tip.Id,*@ Area = "" } , new { @class = "btn btn-danger pull-right" })
+                    @Html.ActionLink("Edit", "Edit", "Tip", new { @*id = tip.Id,*@ Area = "",  }, new { @class = "btn btn-primary pull-right" })
+                </div>
+                <div>
+                    @*<a href="@Url.Action("Like", new { id = Model.Id })" class="btn btn-default">
+                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                    </a>*@
+                    <a href="@Url.Action("Like", "Tips", new { @*id = tip.Id,*@ Area = "" })" class="btn btn-default">
+                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                    </a>
+                    <a href="@Url.Action("Dislike", "Tips", new { @*id = tip.Id,*@ Area = "" })" class="btn btn-default">
+                        <span class="glyphicon glyphicon-thumbs-down"></span>
+                    </a>
+                </div>
+            </div>
         }
     </div>
 </div>

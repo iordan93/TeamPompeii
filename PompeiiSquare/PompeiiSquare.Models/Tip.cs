@@ -10,6 +10,9 @@ namespace PompeiiSquare.Models
 {
     public class Tip
     {
+        //[Key, Column(Order = 4)]
+        //public int Id { get; set; }
+
         [Key, Column(Order = 0)]
         public int UserId { get; set; }
 

@@ -73,11 +73,11 @@ div.panel-body.venue-details-container > div.well {
     margin-bottom: 0;
 }
 
-.delete-edit-venue{
+.delete-edit-venue, .delete-edit-tip {
     margin-right: 0;
 }
 
-.delete-edit-venue a.pull-right{
+.delete-edit-venue a.pull-right, .delete-edit-tip a.pull-right{
     margin: 0 5px;
 }
 
@@ -108,4 +108,8 @@ a.venue-title:hover {
 
 #tip-content {
     max-width: 100%;
+}
+
+.word-wrap {
+    word-wrap: break-word;
 }
