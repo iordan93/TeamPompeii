@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.Spatial;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace PompeiiSquare.Models
             this.Checkins = new HashSet<Checkin>();
             this.Tags = new HashSet<Tag>();
             this.Tips = new HashSet<Tip>();
-            this.Events = new HashSet<Event>();           
+            this.Events = new HashSet<Event>();
         }
 
         public int Id { get; set; }
@@ -29,18 +30,21 @@ namespace PompeiiSquare.Models
 
         public DbGeography Location { get; set; }
 
+        [Display(Name = "Price tier")]
         public int PriceTier { get; set; }
 
         public virtual ICollection<VenueGroup> Groups { get; set; }
 
+        [Display(Name = "Open hours")]
         public virtual ICollection<OpenHours> OpenHours { get; set; }
 
         public string Description { get; set; }
 
+        [Display(Name = "Created at")]
         public DateTime CreatedAt { get; set; }
 
         public virtual ICollection<Checkin> Checkins { get; set; }
-        
+
         public virtual ICollection<Tag> Tags { get; set; }
 
         public virtual ICollection<Tip> Tips { get; set; }

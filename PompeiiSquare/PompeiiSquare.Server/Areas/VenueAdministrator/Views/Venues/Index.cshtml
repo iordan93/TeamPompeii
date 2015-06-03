@@ -1,6 +1,9 @@
 ﻿@model IEnumerable<PompeiiSquare.Models.Venue>
+@{
+    ViewBag.Title = "Venues";
+}
 
-@Html.ActionLink("Creat new venue", "Create", "Venues", new { Area = "VenueAdministrator" }, new { @class = "btn btn-primary create-venue" })
+@Html.ActionLink("Create new venue", "Create", "Venues", new { Area = "VenueAdministrator" }, new { @class = "btn btn-success btn-lg create-venue" })
 
 @foreach (var item in Model)
 {

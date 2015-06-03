@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - PompeiiSquare</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -21,7 +21,9 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Venues", "Index", "Venues", new { Area = "VenueAdministrator" }, new { })</li>
+                    <li>
+                        @Html.ActionLink("Venues", "Index", "Venues", new { area = "" }, null)
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -31,7 +33,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - PompeiiSquare ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - PompeiiSquare</p>
         </footer>
     </div>
     @Scripts.Render("~/bundles/jquery")

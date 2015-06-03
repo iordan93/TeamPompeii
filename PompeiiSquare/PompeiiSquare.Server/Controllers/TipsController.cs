@@ -36,7 +36,7 @@
                 this.Data.Tips.Add(tip);
                 this.Data.SaveChanges();
 
-                return this.RedirectToAction("ViewDetails", "Venues", routeValues: new { id = model.venueId , area = "VenueAdministrator"});
+                return this.RedirectToAction("ViewDetails", "Venues", routeValues: new { id = model.venueId, area = "VenueAdministrator" });
             }
 
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Invalid model");

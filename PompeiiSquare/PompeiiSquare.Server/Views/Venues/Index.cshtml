@@ -1,0 +1,69 @@
+﻿@model IEnumerable<PompeiiSquare.Models.Venue>
+@{
+    ViewBag.Title = "Venues";
+}
+
+@foreach (var item in Model)
+{
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            @*<h3 class="panel-title">@Html.DisplayFor(modelItem => item.Name)</h3>*@
+            <a href="@Url.Action("ViewDetails", "Venues", new { id = @Html.DisplayFor(modelItem => item.Id)})" class="venue-title">
+                <h3 class="panel-title">@Html.DisplayFor(modelItem => item.Name)</h3>
+            </a>
+        </div>
+        <div class="panel-body">
+            <div class="well">
+                <span class="venue-info">@Html.DisplayNameFor(model => model.Address): @Html.DisplayFor(modelItem => item.Address)</span>
+                <span class="venue-info">@Html.DisplayNameFor(model => model.Contact): @Html.DisplayFor(modelItem => item.Contact)</span>
+                @*<span class="venue-info">@Html.DisplayNameFor(model => model.Location): (@Html.DisplayFor(modelItem => item.Location.Longitude), @Html.DisplayFor(modelItem => item.Location.Latitude))</span>*@
+                <div class="venue-info">
+                    @{
+    var priceTierString = item.PriceTier == 0 ? "free" : new string('$', item.PriceTier);
+                    }
+                    @Html.DisplayNameFor(model => model.PriceTier): @priceTierString
+                    <span class="venue-info">@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(modelItem => item.Description)</span>
+                    <span class="venue-info">@Html.DisplayNameFor(model => model.CreatedAt): @Html.DisplayFor(modelItem => item.CreatedAt)</span>
+                    <span class="venue-info">@Html.DisplayNameFor(model => model.Likes): @Html.DisplayFor(modelItem => item.Likes)</span>
+                    <span class="venue-info">
+                        @Html.DisplayNameFor(model => model.OpenHours):
+                        @foreach (var openHour in item.OpenHours)
+                        {
+                            <span>@openHour.Weekday : @openHour.Hours |</span>
+                        }
+                    </span>
+                    <span class="venue-info">
+                        @Html.DisplayNameFor(model => model.Groups):
+                        @if (!item.Groups.Any())
+                        {
+                            <span>no groups</span>
+                        }
+                        @foreach (var group in item.Groups)
+                        {
+                            <span class="label label-primary venue-groups">
+                                <a href="@Url.Action("SearchByGroup", new { id = group.Name })" class="venue-group">
+                                    @group.Name
+                                </a>
+                            </span>
+                        }
+                    </span>
+                    <span class="venue-info">
+                        @Html.DisplayNameFor(model => model.Tags):
+                        @if (!item.Tags.Any())
+                        {
+                            <span>no tags</span>
+                        }
+                        @foreach (var tag in item.Tags)
+                        {
+                            <span class="label label-primary">@tag.Name</span>
+                        }
+                    </span>
+                    <div class="like-dislike-box">
+                        <a href="@Url.Action("Like", new { id = item.Id })" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+                        <a href="@Url.Action("Dislike", new { id = item.Id })" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

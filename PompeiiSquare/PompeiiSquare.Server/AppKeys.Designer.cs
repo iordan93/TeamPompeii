@@ -61,6 +61,24 @@ namespace PompeiiSquare.Server {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to kuH3ayt2AB.
+        /// </summary>
+        internal static string AzureDbPassword {
+            get {
+                return ResourceManager.GetString("AzureDbPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to pompeiisquare.
+        /// </summary>
+        internal static string AzureDbUser {
+            get {
+                return ResourceManager.GetString("AzureDbUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1600624730193996.
         /// </summary>
         internal static string FacebookAppId {
