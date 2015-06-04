@@ -1,9 +1,11 @@
 ﻿@model PompeiiSquare.Server.Areas.VenueAdministrator.Models.VenueEditBindingModel
 @using PompeiiSquare.Server.Areas.VenueAdministrator.Models;
+
 @{
     ViewBag.Title = "Edit venue";
 }
-<h2>Edit venue</h2>
+
+<h2>Create new venue</h2>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -17,6 +19,7 @@
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -24,6 +27,7 @@
                 @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Contact, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -31,6 +35,7 @@
                 @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -38,6 +43,7 @@
                 @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.PriceTier, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -45,35 +51,38 @@
                 @Html.ValidationMessageFor(model => model.PriceTier, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", rows = 3 } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Groups, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <p class="text-muted">Press <kbd>Ctrl</kbd> to select multiple groups</p>
                 @{var groups = (ViewData["Groups"] as IEnumerable<VenueGroupBindingModel>)
                       .Select(g => new SelectListItem() { Value = g.Id.ToString(), Text = g.Name });}
-                @Html.ListBox("Groups", groups, new { @class = "form-control" })
+                @Html.ListBox("Groups", groups, new { @class = "form-control", size = 5 })
                 @Html.ValidationMessageFor(model => model.Groups, "", new { @class = "text-danger" })
-                <a class="btn btn-success" id="add-new-group" data-toggle="modal" data-target="#addGroup">
-                    <i class="glyphicon glyphicon-plus"></i> Add new group
-                </a>
+                @Html.ActionLink(
+                    linkText: "Add new group",
+                    actionName: "Create",
+                    controllerName: "VenueGroups",
+                    routeValues: null,
+                    htmlAttributes: new { @class = "modal-link btn btn-success" })
+                <div id="create-group-error"></div>
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.OpenHours, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.OpenHours, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.OpenHours, "", new { @class = "text-danger" })
-                @Ajax.ActionLink(
-                    "Add new",
-                    "AddNewOpenHours",
-                    new AjaxOptions() { InsertionMode = InsertionMode.InsertAfter, UpdateTargetId = "open-hours-items" })
             </div>
         </div>
         <div class="form-group">
@@ -85,55 +94,51 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Edit" class="btn btn-default" onclick="updateIds()" />
+                <input type="submit" value="Update" class="btn btn-default" onclick="updateIds()" />
             </div>
         </div>
     </div>
 }
+
 @section Scripts {
     <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
     <script>
-    function updateIds() {
-        var nextOpenHoursId = 1;
-        $("input[name='Weekday']")
-            .each(function (index, element) {
-                $(element).attr("name", "OpenHours[" + (nextOpenHoursId++) + "]." + $(element).attr("name"));
-            });
-        nextOpenHoursId = 1;
-        $("input[name='Hours']")
-            .each(function (index, element) {
-                $(element).attr("name", "OpenHours[" + (nextOpenHoursId++) + "]." + $(element).attr("name"));
-            });
-    }
+        function updateIds() {
+            var nextOpenHoursId = 1;
+            $("input[name='Weekday']")
+                .each(function (index, element) {
+                    $(element).attr("name", "OpenHours[" + (nextOpenHoursId++) + "]." + $(element).attr("name"));
+                });
+            nextOpenHoursId = 1;
+            $("input[name='Hours']")
+                .each(function (index, element) {
+                    $(element).attr("name", "OpenHours[" + (nextOpenHoursId++) + "]." + $(element).attr("name"));
+                });
+        }
 
-    function removeWorkingHoursItem(e) {
-        $(e.target).parents(".row").remove();
-    }
+        function removeWorkingHoursItem(e) {
+            $(e.target).parents(".row").remove();
+        }
 
-    $(function () {
-        $("[data-toggle='tooltip']").tooltip();
-    });
+        $(function () {
+            $("[data-toggle='tooltip']").tooltip();
+            $("body").on("click", ".modal-link", function (e) {
+                e.preventDefault();
+                $(this).attr("data-target", "#modal-container");
+                $(this).attr("data-toggle", "modal");
+            });
+            $("body").on("click", ".modal-close-btn", function () {
+                $("#modal-container").modal("hide");
+            });
+            $("#modal-container").on("hidden.bs.modal", function () {
+                $(this).removeData("bs.modal");
+            });
+            @{System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;}
+            maps.markerToSet = new google.maps.LatLng(@Model.Location.Latitude, @Model.Location.Longitude);
+        });
     </script>
 }
-<div class="modal fade" id="addGroup" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form class="form-horizontal">
-                <div class="modal-header" id="new-category-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Add new group</h4>
-                </div>
-                <div class="form-group">
-                    <label for="group-name" class="col-sm-3 control-label">Group name</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="group-name" />
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="button" id="add-new-category" class="btn btn-primary">Save</button>
-                </div>
-            </form>
-        </div>
-    </div>
+
+<div id="modal-container" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-content"></div>
 </div>

@@ -25,7 +25,12 @@ namespace PompeiiSquare.Server.Utilities
             Mapper.CreateMap<Venue, VenueEditBindingModel>()
                 .ForMember(v => v.OpenHours, opt => opt.Ignore())
                 .ForMember(v => v.Tags, opt => opt.Ignore())
-                .ForMember(v => v.Groups, opt => opt.Ignore()); // TODO: Get all info
+                .ForMember(v => v.Groups, opt => opt.Ignore());
+
+            Mapper.CreateMap<VenueEditBindingModel, Venue>()
+                .ForMember(v => v.OpenHours, opt => opt.Ignore())
+                .ForMember(v => v.Tags, opt => opt.Ignore())
+                .ForMember(v => v.Groups, opt => opt.Ignore());
 
             Mapper.CreateMap<Venue, VenueDeleteBindingModel>()
                .ForMember(v => v.OpenHours, opt => opt.Ignore())

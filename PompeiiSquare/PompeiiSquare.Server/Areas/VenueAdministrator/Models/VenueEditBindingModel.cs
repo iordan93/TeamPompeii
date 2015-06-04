@@ -1,5 +1,6 @@
 ﻿namespace PompeiiSquare.Server.Areas.VenueAdministrator.Models
 {
+    using PompeiiSquare.Models;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Data.Entity.Spatial;
@@ -8,7 +9,7 @@
     {
         public VenueEditBindingModel()
         {
-            this.OpenHours = new List<OpenHoursBindingModel>(1) { new OpenHoursBindingModel() };
+            this.OpenHours = new List<OpenHours>() { new OpenHours() };
         }
 
         public int? Id { get; set; }
@@ -30,7 +31,7 @@
         public IList<int> Groups { get; set; }
 
         [Display(Name = "Open hours")]
-        public IList<OpenHoursBindingModel> OpenHours { get; set; }
+        public IList<OpenHours> OpenHours { get; set; }
 
         [Required, MinLength(10, ErrorMessage = "The description must be at least 10 symbols long.")]
         public string Description { get; set; }

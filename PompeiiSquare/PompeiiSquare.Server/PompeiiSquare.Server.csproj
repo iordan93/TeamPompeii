@@ -352,6 +352,7 @@
     <Content Include="Views\Venues\Index.cshtml" />
     <Content Include="Views\Venues\_VenueDetails.cshtml" />
     <Content Include="Views\Tips\_TipDetails.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\OpenHours.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />

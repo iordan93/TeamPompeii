@@ -4,6 +4,7 @@ using PompeiiSquare.Models;
 using PompeiiSquare.Server.Areas.VenueAdministrator.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -59,7 +60,7 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
             {
                 var tagNames = model.Tags
                     .Split(new[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries);
-                var tags = MapTags(tagNames);
+                var tags = this.MapTags(tagNames);
                 venue.Tags = tags;
             }
 
@@ -91,7 +92,12 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.Groups = this.Data.VenueGroups.All().Select(g => new VenueGroupBindingModel() { Id = g.Id, Name = g.Name }).ToList();
+            venue.OpenHours = venueFromDb.OpenHours.ToList();
+            venue.Groups = venueFromDb.Groups.Select(g => g.Id).ToList();
+            venue.Tags = string.Join(", ", venueFromDb.Tags.Select(t => t.Name));
+            ViewBag.Groups = this.Data.VenueGroups.All()
+                .Select(g => new VenueGroupBindingModel() { Id = g.Id, Name = g.Name })
+                .ToList();
             return this.View(venue);
         }
 
@@ -103,13 +109,39 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Venue venueFromDb = this.Data.Venues.Find(model.Id);
+            Venue venueFromDb = this.Data.Venues.All()
+                .Include(v => v.Tags)
+                .Include(v => v.OpenHours)
+                .FirstOrDefault(v => v.Id == model.Id);
             venueFromDb.Name = model.Name;
             venueFromDb.Address = model.Address;
             venueFromDb.Contact = model.Contact;
             venueFromDb.Location = model.Location;
             venueFromDb.PriceTier = model.PriceTier;
             venueFromDb.Description = model.Description;
+            if (model.Tags != null)
+            {
+                var tagNames = model.Tags
+                    .Split(new[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries);
+                venueFromDb.Tags = this.MapTags(tagNames.Distinct().ToArray());
+            }
+
+            foreach (var openHours in model.OpenHours)
+            {
+                var openHoursDb = this.Data.OpenHours.Find(openHours.Id);
+                if (openHoursDb == null)
+                {
+                    openHoursDb = this.Data.OpenHours.Add(new OpenHours() { Weekday = openHours.Weekday, Hours = openHours.Hours });
+                    this.Data.SaveChanges();
+                }
+                else
+                {
+                    openHoursDb.Weekday = openHours.Weekday;
+                    openHoursDb.Hours = openHours.Hours;
+                    this.Data.SaveChanges();
+                }
+            }
+
             this.Data.SaveChanges();
 
             return this.RedirectToAction("Index");
