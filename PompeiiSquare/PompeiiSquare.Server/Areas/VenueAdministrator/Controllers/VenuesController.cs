@@ -2,6 +2,7 @@
 using PompeiiSquare.Data.UnitOfWork;
 using PompeiiSquare.Models;
 using PompeiiSquare.Server.Areas.VenueAdministrator.Models;
+using PompeiiSquare.Server.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -73,6 +74,15 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Controllers
 
             venue.OpenHours = openHours;
             this.Data.SaveChanges();
+
+            if (model.Photo != null)
+            {
+                string path = DropboxRepository.Upload(model.Photo.FileName, this.UserProfile.UserName, model.Photo.InputStream);
+                var photo = new Photo() { Path = path, Author = this.UserProfile, CreatedAt = DateTime.Now };
+                venue.Photo = photo;
+                this.Data.SaveChanges();
+            }
+
             return RedirectToAction("Index");
         }
 

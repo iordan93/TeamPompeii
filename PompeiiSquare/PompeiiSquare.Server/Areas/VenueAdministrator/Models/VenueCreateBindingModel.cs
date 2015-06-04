@@ -39,6 +39,6 @@ namespace PompeiiSquare.Server.Areas.VenueAdministrator.Models
 
         public string Tags { get; set; }
 
-        // TODO: Add photo?
+        public HttpPostedFileBase Photo { get; set; }
     }
 }

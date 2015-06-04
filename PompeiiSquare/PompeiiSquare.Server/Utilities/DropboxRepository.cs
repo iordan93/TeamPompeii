@@ -16,9 +16,11 @@ namespace PompeiiSquare.Server.Utilities
             client = new DropNetClient(AppKeys.DropboxApiKey, AppKeys.DropboxApiSecret, AppKeys.DropboxAccessToken);
         }
 
-        public static void Upload(string folder, string filename, Stream fileStream)
+        public static string Upload(string fileName, string authorName, Stream fileStream)
         {
-            client.UploadFile(folder, filename, fileStream);
+            string fullFileName = authorName + "_" + DateTime.Now.ToString("o") + "_" + fileName;
+            client.UploadFile("/", fullFileName, fileStream);
+            return fullFileName;
         }
 
         public static string Download(string path)

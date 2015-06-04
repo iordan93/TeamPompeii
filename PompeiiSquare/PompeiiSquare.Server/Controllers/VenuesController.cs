@@ -36,6 +36,11 @@ namespace PompeiiSquare.Server.Controllers
         {
             var venueFromDb = this.Data.Venues.Find(id);
             var photoUrls = new List<PhotoViewModel>();
+            if (venueFromDb.Photo != null)
+            {
+                photoUrls.Add(new PhotoViewModel() { Url = venueFromDb.Photo.Path, CreatedAt = venueFromDb.CreatedAt });
+            }
+            
             photoUrls.AddRange(this.Data.Checkins.All()
                 .Where(c => c.VenueId == venueFromDb.Id && c.Photo != null)
                 .Select(c => new PhotoViewModel { Url = c.Photo.Path, CreatedAt = c.CreatedAt }));
@@ -99,9 +104,8 @@ namespace PompeiiSquare.Server.Controllers
 
             if (model.Photo != null)
             {
-                string filename = this.UserProfile.UserName + "_" + DateTime.Now.ToString("o") + "_" + model.Photo.FileName;
-                DropboxRepository.Upload("/Checkins", filename, model.Photo.InputStream);
-                var photo = new Photo() { Path = "/Checkins/" + filename, Author = this.UserProfile, CreatedAt = DateTime.Now };
+                var path = DropboxRepository.Upload(model.Photo.FileName, this.UserProfile.UserName, model.Photo.InputStream);
+                var photo = new Photo() { Path = path, Author = this.UserProfile, CreatedAt = DateTime.Now };
                 checkin.Photo = photo;
                 this.Data.SaveChanges();
             }

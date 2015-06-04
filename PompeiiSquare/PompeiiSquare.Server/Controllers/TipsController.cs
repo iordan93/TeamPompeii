@@ -6,6 +6,7 @@
     using System.Web.Mvc;
     using PompeiiSquare.Models;
     using System;
+    using PompeiiSquare.Server.Utilities;
 
     public class TipsController : BaseController
     {
@@ -35,6 +36,15 @@
                 };
                 this.Data.Tips.Add(tip);
                 this.Data.SaveChanges();
+
+                if (model.Photo != null)
+                {
+                    string path = DropboxRepository.Upload(model.Photo.FileName, this.UserProfile.UserName, model.Photo.InputStream);
+                    var photo = new Photo() { Path = path, Author = this.UserProfile, CreatedAt = DateTime.Now };
+                    tip.Photo = photo;
+                    this.Data.Tips.Add(tip);
+                    this.Data.SaveChanges();
+                }
 
                 return this.RedirectToAction("ViewDetails", "Venues", routeValues: new { id = model.venueId });
             }
