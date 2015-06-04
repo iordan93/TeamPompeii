@@ -123,6 +123,15 @@
   <data name="AzureDbUser" xml:space="preserve">
     <value>pompeiisquare</value>
   </data>
+  <data name="DropboxAccessToken" xml:space="preserve">
+    <value>8p74Yi1kaCsAAAAAAAAANoan9C6u7tCKmwFN9Xu6spSWcyqPeGBUe7QUCZI_KghB</value>
+  </data>
+  <data name="DropboxApiKey" xml:space="preserve">
+    <value>z6rg1y0y10p8e8j</value>
+  </data>
+  <data name="DropboxApiSecret" xml:space="preserve">
+    <value>new8xqj73andy4b</value>
+  </data>
   <data name="FacebookAppId" xml:space="preserve">
     <value>1600624730193996</value>
   </data>

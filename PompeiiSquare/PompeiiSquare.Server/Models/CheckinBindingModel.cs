@@ -12,6 +12,6 @@ namespace PompeiiSquare.Server.Models
 
         public string VenueName { get; set; }
 
-        public Photo Photo { get; set; }
+        public HttpPostedFileBase Photo { get; set; }
     }
 }

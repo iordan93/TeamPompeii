@@ -1,6 +1,7 @@
 ﻿using PompeiiSquare.Data.UnitOfWork;
 using PompeiiSquare.Models;
 using PompeiiSquare.Server.Models;
+using PompeiiSquare.Server.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -74,7 +75,7 @@ namespace PompeiiSquare.Server.Controllers
             {
                 return this.HttpNotFound();
             }
-            
+
             var checkin = new Checkin()
             {
                 Venue = venue,
@@ -82,9 +83,19 @@ namespace PompeiiSquare.Server.Controllers
                 CreatedAt = DateTime.Now,
                 User = this.UserProfile
             };
-
+            
             this.Data.Checkins.Add(checkin);
             this.Data.SaveChanges();
+
+            if (model.Photo != null)
+            {
+                string filename = this.UserProfile.UserName + "_" + DateTime.Now.ToString("o") + "_" + model.Photo.FileName;
+                DropboxUploader.Upload("/Checkins", filename, model.Photo.InputStream);
+                var photo = new Photo() { Path = "/Checkins/" + filename, Author = this.UserProfile, CreatedAt = DateTime.Now };
+                checkin.Photo = photo;
+                this.Data.SaveChanges();
+            }
+
             return this.RedirectToAction("ViewDetails", new { id = model.VenueId });
         }
     }

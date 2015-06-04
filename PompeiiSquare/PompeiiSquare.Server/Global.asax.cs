@@ -16,7 +16,6 @@ namespace PompeiiSquare.Server
             Database.SetInitializer<PompeiiSquareDbContext>(new MigrateDatabaseToLatestVersion<PompeiiSquareDbContext, Configuration>());
             
             MapperUtilities.CreateAllMaps();
-
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

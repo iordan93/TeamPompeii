@@ -79,6 +79,33 @@ namespace PompeiiSquare.Server {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 8p74Yi1kaCsAAAAAAAAANoan9C6u7tCKmwFN9Xu6spSWcyqPeGBUe7QUCZI_KghB.
+        /// </summary>
+        internal static string DropboxAccessToken {
+            get {
+                return ResourceManager.GetString("DropboxAccessToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to z6rg1y0y10p8e8j.
+        /// </summary>
+        internal static string DropboxApiKey {
+            get {
+                return ResourceManager.GetString("DropboxApiKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to new8xqj73andy4b.
+        /// </summary>
+        internal static string DropboxApiSecret {
+            get {
+                return ResourceManager.GetString("DropboxApiSecret", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1600624730193996.
         /// </summary>
         internal static string FacebookAppId {

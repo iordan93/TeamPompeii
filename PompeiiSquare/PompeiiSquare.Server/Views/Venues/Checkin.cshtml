@@ -5,13 +5,15 @@
 
 <h2>@ViewBag.Title</h2>
 
-@using (@Html.BeginForm("Checkin", "Venues", FormMethod.Post))
+@using (@Html.BeginForm("Checkin", "Venues", FormMethod.Post, new { enctype="multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.VenueId)
     <div class="jumbotron">
         Are you sure you want to check in at @Model.VenueName?
         <div>
+            You may optionally add an image to your checkin
+            <input type="file" name="Photo" />
             <input type="submit" class="btn btn-success" value="Yes" />
             @Html.ActionLink("No", "ViewDetails", new { id = Model.VenueId }, new { @class = "btn btn-danger" })
         </div>
