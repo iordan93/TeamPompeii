@@ -12,13 +12,13 @@
     @if (User.Identity.Name == Model.User.UserName)
     {
         <div class="row delete-edit-tip">
-            @Html.ActionLink("Delete", "Delete", "Tip", new { id = Model.Id, Area = "" }, new { @class = "btn btn-danger pull-right" })
-            @Html.ActionLink("Edit", "Edit", "Tip", new { id = Model.Id, Area = "" }, new { @class = "btn btn-primary pull-right" })
+            @Html.ActionLink("Delete", "Delete", "Tips", new { id = Model.Id }, new { @class = "btn btn-danger pull-right" })
+            @Html.ActionLink("Edit", "Edit", "Tips", new { id = Model.Id }, new { @class = "btn btn-primary pull-right" })
         </div>
     }
-        <div class="like-dislike-box">
-            @Ajax.RawActionLink("<span class=\"glyphicon glyphicon-thumbs-up\">", "Like", "Tips", new { id = Model.Id }, new AjaxOptions() { InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "tip-details-" + Model.Id }, new { @class = "btn btn-success" })
-            @Ajax.RawActionLink("<span class=\"glyphicon glyphicon-thumbs-down\">", "Dislike", "Tips", new { id = Model.Id }, new AjaxOptions() { InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "tip-details-" + Model.Id }, new { @class = "btn btn-danger" })
-        </div>
+    <div class="like-dislike-box">
+        @Ajax.RawActionLink("<span class=\"glyphicon glyphicon-thumbs-up\">", "Like", "Tips", new { id = Model.Id }, new AjaxOptions() { InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "tip-details-" + Model.Id }, new { @class = "btn btn-success" })
+        @Ajax.RawActionLink("<span class=\"glyphicon glyphicon-thumbs-down\">", "Dislike", "Tips", new { id = Model.Id }, new AjaxOptions() { InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "tip-details-" + Model.Id }, new { @class = "btn btn-danger" })
+    </div>
 </div>
 

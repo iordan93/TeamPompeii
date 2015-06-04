@@ -1,0 +1,21 @@
+﻿@model PompeiiSquare.Server.Models.TipBindingModel
+@{
+    ViewBag.Title = "Delete tip";
+}
+
+<h3>Are you sure you want to delete this?</h3>
+
+<div class="well">
+    <span class="venue-info">@Html.DisplayFor(modelItem => Model.Content)</span>
+</div>
+
+@using (Html.BeginForm("Remove", "Tips"))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.venueId)
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        @Html.ActionLink("Cancel", "ViewDetails", "Venues", new { id = Model.venueId }, new { @class = "btn btn-primary" })
+    </div>
+}
