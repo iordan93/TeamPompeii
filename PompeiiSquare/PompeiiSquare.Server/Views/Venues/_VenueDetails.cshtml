@@ -26,6 +26,9 @@
                     }
                 </span>
                 <span class="venue-info">
+                    @Html.DisplayNameFor(model => model.Checkins): @Model.Checkins.Count()
+                </span>
+                <span class="venue-info">
                     @Html.DisplayNameFor(model => model.Groups):
                     @if (!Model.Groups.Any())
                     {
@@ -54,6 +57,7 @@
                 <div class="like-dislike-box">
                     @Ajax.RawActionLink("<span class=\"glyphicon glyphicon-thumbs-up\">", "Like", "Venues", new { id = Model.Id }, new AjaxOptions() { InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "venue-details-" + Model.Id }, new { @class = "btn btn-success" })
                     @Ajax.RawActionLink("<span class=\"glyphicon glyphicon-thumbs-down\">", "Dislike", "Venues", new { id = Model.Id }, new AjaxOptions() { InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "venue-details-" + Model.Id }, new { @class = "btn btn-danger" })
+                    @Html.RawActionLink("<span class=\"glyphicon glyphicon-check\">", "Checkin", "Venues", new { id = Model.Id }, new { @class = "btn btn-info checkin-button" })
                 </div>
             </div>
         </div>

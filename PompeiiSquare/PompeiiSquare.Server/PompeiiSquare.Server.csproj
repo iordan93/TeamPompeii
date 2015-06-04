@@ -249,6 +249,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CheckinBindingModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\TipBindingModel.cs" />
@@ -353,6 +354,7 @@
     <Content Include="Views\Venues\_VenueDetails.cshtml" />
     <Content Include="Views\Tips\_TipDetails.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\OpenHours.cshtml" />
+    <Content Include="Views\Venues\Checkin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />

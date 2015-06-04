@@ -1,5 +1,6 @@
 ﻿using PompeiiSquare.Data.UnitOfWork;
 using PompeiiSquare.Models;
+using PompeiiSquare.Server.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +51,41 @@ namespace PompeiiSquare.Server.Controllers
             venue.Likes--;
             this.Data.SaveChanges();
             return this.PartialView("_VenueDetails", venue);
+        }
+
+        [HttpGet]
+        public ActionResult Checkin(int id)
+        {
+            var venue = this.Data.Venues.Find(id);
+            if (venue == null)
+            {
+                return this.HttpNotFound();
+            }
+
+            var model = new CheckinBindingModel() { VenueId = venue.Id, VenueName = venue.Name };
+            return this.View(model);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Checkin(CheckinBindingModel model)
+        {
+            var venue = this.Data.Venues.Find(model.VenueId);
+            if (venue == null)
+            {
+                return this.HttpNotFound();
+            }
+
+            var checkin = new Checkin()
+            {
+                Venue = venue,
+                VenueId = venue.Id,
+                CreatedAt = DateTime.Now,
+                User = this.UserProfile
+            };
+
+            this.Data.Checkins.Add(checkin);
+            this.Data.SaveChanges();
+            return this.RedirectToAction("ViewDetails", new { id = model.VenueId });
         }
     }
 }
