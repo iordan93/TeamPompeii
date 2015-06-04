@@ -74,7 +74,7 @@ namespace PompeiiSquare.Server.Controllers
             {
                 return this.HttpNotFound();
             }
-
+            
             var checkin = new Checkin()
             {
                 Venue = venue,

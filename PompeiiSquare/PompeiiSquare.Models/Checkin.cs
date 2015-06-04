@@ -11,8 +11,6 @@ namespace PompeiiSquare.Models
     {
         public int Id { get; set; }
 
-        public int UserId { get; set; }
-
         public int VenueId { get; set; }
 
         public DateTime CreatedAt { get; set; }

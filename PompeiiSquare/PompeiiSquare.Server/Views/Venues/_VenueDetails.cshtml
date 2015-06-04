@@ -26,7 +26,23 @@
                     }
                 </span>
                 <span class="venue-info">
-                    @Html.DisplayNameFor(model => model.Checkins): @Model.Checkins.Count()
+                    @{
+                        var names = Model.Checkins
+                            .Select(c => c.User.UserName)
+                            .Distinct()
+                            .OrderBy(c => Guid.NewGuid());
+                        var namesResult = string.Join(", ", names.Take(3));
+                        if (names.Count() > 3)
+                        {
+                            namesResult += " and " + (names.Count() - 3) + " others";
+                        }
+
+                        if (namesResult == string.Empty)
+                        {
+                            namesResult = "none";
+                        }
+                    }
+                    @Html.DisplayNameFor(model => model.Checkins): @namesResult
                 </span>
                 <span class="venue-info">
                     @Html.DisplayNameFor(model => model.Groups):
