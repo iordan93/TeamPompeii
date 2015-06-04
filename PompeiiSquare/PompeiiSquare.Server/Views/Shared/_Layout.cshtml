@@ -24,7 +24,20 @@
                     <li>
                         @Html.ActionLink("Venues", "Index", "Venues", new { area = "" }, null)
                     </li>
+                    @if (User.IsInRole("VenueAdministrator"))
+                    {
+                        <li>
+                            @Html.ActionLink("Venue Admin", "Index", "Venues", new { area = "VenueAdministrator" }, null)
+                        </li>
+                    }
+                    @if (User.IsInRole("UserAdministrator"))
+                    {
+                        <li>
+                            @Html.ActionLink("User Admin", "Index", "Users", new { area = "UserAdministrator" }, null)
+                        </li>
+                    }
                 </ul>
+
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

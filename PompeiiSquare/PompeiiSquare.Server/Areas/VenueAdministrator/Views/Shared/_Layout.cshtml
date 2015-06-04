@@ -9,7 +9,7 @@
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -21,8 +21,22 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { Area = "" }, new { })</li>
-                    <li>@Html.ActionLink("Venues Admin", "Index", "Venues", new { Area = "VenueAdministrator" }, new { })</li>
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>
+                        @Html.ActionLink("Venues", "Index", "Venues", new { area = "" }, null)
+                    </li>
+                    @if (User.IsInRole("VenueAdministrator"))
+                    {
+                        <li>
+                            @Html.ActionLink("Venue Admin", "Index", "Venues", new { area = "VenueAdministrator" }, null)
+                        </li>
+                    }
+                    @if (User.IsInRole("UserAdministrator"))
+                    {
+                        <li>
+                            @Html.ActionLink("User Admin", "Index", "Users", new { area = "UserAdministrator" }, null)
+                        </li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

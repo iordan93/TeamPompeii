@@ -22,15 +22,11 @@ namespace PompeiiSquare.Data.Migrations
             {
                 var store = new RoleStore<IdentityRole>(context);
                 var manager = new RoleManager<IdentityRole>(store);
-                var adminRole = new IdentityRole { Name = "Admin" };
-                var VenueAdminRole = new IdentityRole { Name = "VenueAdministrator" };
-                var RegisteredUserRole = new IdentityRole { Name = "RegisteredUser" };
-                var GuestRole = new IdentityRole { Name = "Guest" };
+                var adminRole = new IdentityRole { Name = "UserAdministrator" };
+                var venueAdminRole = new IdentityRole { Name = "VenueAdministrator" };
 
                 manager.Create(adminRole);
-                manager.Create(VenueAdminRole);
-                manager.Create(RegisteredUserRole);
-                manager.Create(GuestRole);
+                manager.Create(venueAdminRole);
             }
 
             if (!context.Users.Any(u => u.UserName == "Founder"))
@@ -91,8 +87,6 @@ namespace PompeiiSquare.Data.Migrations
                 context.Tags.Add(relax);
                 context.Tags.Add(cheap);
             }
-
-            //TODO : Add more seed data and Update admin passwords
         }
     }
 }

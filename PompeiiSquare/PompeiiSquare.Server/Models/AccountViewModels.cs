@@ -76,9 +76,11 @@ namespace PompeiiSquare.Server.Models
         [MinLength(2)]
         public string LastName { get; set; }
 
+        [Display(Name = "Home city")]
         public string HomeCity { get; set; }
 
-        public Gender Gender { get; set; }
+        [Display(Name = "Gender")]
+        public int GenderId { get; set; }
 
         public virtual Photo ProfilePicture { get; set; }
 

@@ -10,20 +10,23 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using PompeiiSquare.Server.Models;
 using PompeiiSquare.Models;
+using PompeiiSquare.Data.UnitOfWork;
 
 namespace PompeiiSquare.Server.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public AccountController()
+        public AccountController(IPompeiiSquareData data)
+            : base(data)
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+            : this(new PompeiiSquareData())
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -35,9 +38,9 @@ namespace PompeiiSquare.Server.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -121,7 +124,7 @@ namespace PompeiiSquare.Server.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -140,6 +143,9 @@ namespace PompeiiSquare.Server.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.Genders = this.Data.Genders.All()
+                .Select(g => new SelectListItem() { Text = g.GenderName, Value = g.Id.ToString() })
+                .ToList();
             return View();
         }
 
@@ -152,28 +158,22 @@ namespace PompeiiSquare.Server.Controllers
         {
             if (ModelState.IsValid)
             {
-                //var user = new User { UserName = model.Email, Email = model.Email };
-                var photo = new Photo
-                {
-                    CreatedAt = DateTime.Now,
-                    Path = model.ProfilePicture.Path
-                };
-                var user = new User 
+                var user = new User
                 {
                     UserName = model.UserName,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     HomeCity = model.HomeCity,
-                    Gender = model.Gender,
-                    Email = model.Email,
-                    ProfilePicture = photo
+                    Gender = this.Data.Genders.Find(model.GenderId),
+                    Email = model.Email
                 };
                 // TODO : Add profile for photo
+                
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -184,7 +184,9 @@ namespace PompeiiSquare.Server.Controllers
                 }
                 AddErrors(result);
             }
-
+            ViewBag.Genders = this.Data.Genders.All()
+                .Select(g => new SelectListItem() { Text = g.GenderName, Value = g.Id.ToString() })
+                .ToList();
             // If we got this far, something failed, redisplay form
             return View(model);
         }
