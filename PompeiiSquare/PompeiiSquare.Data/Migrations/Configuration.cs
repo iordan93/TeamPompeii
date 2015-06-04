@@ -59,7 +59,7 @@ namespace PompeiiSquare.Data.Migrations
                 };
 
                 manager.Create(founder, "adminPassword");
-                manager.AddToRole(founder.Id, "Admin");
+                manager.AddToRole(founder.Id, "UserAdministrator");
                 manager.Create(venueAdmin, "venueAdminPassword");
                 manager.AddToRole(venueAdmin.Id, "VenueAdministrator");
             }
