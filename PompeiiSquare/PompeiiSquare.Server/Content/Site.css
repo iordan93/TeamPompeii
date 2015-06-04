@@ -129,3 +129,8 @@ a.venue-title {
 .add-tip {
     margin: 20px 0;
 }
+
+.gallery-item {
+    max-width: 20%;
+    display: inline-block;
+}

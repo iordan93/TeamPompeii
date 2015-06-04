@@ -35,6 +35,16 @@ namespace PompeiiSquare.Server.Controllers
         public ActionResult ViewDetails(int id)
         {
             var venueFromDb = this.Data.Venues.Find(id);
+            var photoUrls = new List<PhotoViewModel>();
+            photoUrls.AddRange(this.Data.Checkins.All()
+                .Where(c => c.VenueId == venueFromDb.Id && c.Photo != null)
+                .Select(c => new PhotoViewModel { Url = c.Photo.Path, CreatedAt = c.CreatedAt }));
+            photoUrls.AddRange(this.Data.Tips.All()
+                .Where(t => t.VenueId == venueFromDb.Id && t.Photo != null)
+                .Select(t => new PhotoViewModel { Url = t.Photo.Path, CreatedAt = t.CreatedAt }));
+            ViewBag.Photos = photoUrls
+                .OrderByDescending(u => u.CreatedAt)
+                .Select(p => DropboxRepository.Download(p.Url));
             return this.View(venueFromDb);
         }
 
@@ -83,14 +93,14 @@ namespace PompeiiSquare.Server.Controllers
                 CreatedAt = DateTime.Now,
                 User = this.UserProfile
             };
-            
+
             this.Data.Checkins.Add(checkin);
             this.Data.SaveChanges();
 
             if (model.Photo != null)
             {
                 string filename = this.UserProfile.UserName + "_" + DateTime.Now.ToString("o") + "_" + model.Photo.FileName;
-                DropboxUploader.Upload("/Checkins", filename, model.Photo.InputStream);
+                DropboxRepository.Upload("/Checkins", filename, model.Photo.InputStream);
                 var photo = new Photo() { Path = "/Checkins/" + filename, Author = this.UserProfile, CreatedAt = DateTime.Now };
                 checkin.Photo = photo;
                 this.Data.SaveChanges();

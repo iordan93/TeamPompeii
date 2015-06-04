@@ -258,12 +258,13 @@
     <Compile Include="Models\CheckinBindingModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PhotoViewModel.cs" />
     <Compile Include="Models\TipBindingModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utilities\DbGeographyModelBinder.cs" />
     <Compile Include="Utilities\DecimalModelBinder.cs" />
-    <Compile Include="Utilities\DropboxUploader.cs" />
+    <Compile Include="Utilities\DropboxRepository.cs" />
     <Compile Include="Utilities\HtmlExtensions.cs" />
     <Compile Include="Utilities\MapperUtilities.cs" />
   </ItemGroup>
@@ -272,6 +273,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\lightbox.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -289,6 +291,10 @@
     <Content Include="Areas\VenueAdministrator\Views\Venues\AddNewOpenHours.cshtml" />
     <Content Include="Areas\VenueAdministrator\Views\Venues\Index.cshtml" />
     <Content Include="Areas\VenueAdministrator\Views\Venues\AddNewGroup.cshtml" />
+    <Content Include="img\close.png" />
+    <Content Include="img\loading.gif" />
+    <Content Include="img\next.png" />
+    <Content Include="img\prev.png" />
     <Content Include="Scripts\bootstrap.min.js.map">
       <DependentUpon>bootstrap.min.js</DependentUpon>
     </Content>
@@ -313,6 +319,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\lightbox.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />

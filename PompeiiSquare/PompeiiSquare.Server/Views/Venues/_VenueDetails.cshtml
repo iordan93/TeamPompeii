@@ -8,6 +8,16 @@
         </a>
     </div>
     <div class="panel-body">
+        @{if (ViewBag.Photos != null)
+        {
+            <div>
+                @foreach (var photo in ViewBag.Photos)
+                {
+                    <a href="@photo" data-lightbox="gallery"><img src="@photo" class="gallery-item" /></a>
+                }
+            </div>
+        }}
+
         <div class="well">
             <span class="venue-info">@Html.DisplayNameFor(model => model.Address): @Html.DisplayFor(m => m.Address)</span>
             <span class="venue-info">@Html.DisplayNameFor(model => model.Contact): @Html.DisplayFor(m => m.Contact)</span>
