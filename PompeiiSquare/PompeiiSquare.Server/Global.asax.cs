@@ -14,7 +14,7 @@ namespace PompeiiSquare.Server
         protected void Application_Start()
         {
             Database.SetInitializer<PompeiiSquareDbContext>(new MigrateDatabaseToLatestVersion<PompeiiSquareDbContext, Configuration>());
-            
+            // This is a test comment
             MapperUtilities.CreateAllMaps();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
